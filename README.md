@@ -31,4 +31,3 @@ https://docs.google.com/spreadsheets/d/1zLu5EG9wCYDMZm7nt5e5CCagBfj6Ubqg4MsBNx9L
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
-- 仮想環境：Vagrant,VirtualBox
