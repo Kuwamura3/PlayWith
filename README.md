@@ -22,7 +22,7 @@
 新しくオンラインゲームを始めたい、けど周りに一緒に遊ぶ人がいない、といったときの仲間探し
 
 ## 設計書
-
+https://drive.google.com/drive/folders/1tjKwS0_eAJFM_g6dXuaDUOvIibftYDpE?usp=sharing
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1zLu5EG9wCYDMZm7nt5e5CCagBfj6Ubqg4MsBNx9LdIA/edit?usp=sharing
 
