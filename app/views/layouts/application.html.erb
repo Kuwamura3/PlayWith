@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>PlayWith</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+	<head>
+		<title>PlayWith</title>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
 
-  <body>
-    <%= yield %>
-  </body>
+	<body>
+
+		<header class="nav navbar-inverse">
+			<div class="container">
+				<nav class="nav navbar-nav navbar-left">
+					<span>LOGO</span>
+				</nav>
+				<nav>
+					<ul class="nav navbar-nav navbar-right">
+						test
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<div class="container">
+			<%= yield %>
+		</div>
+
+		<footer>
+			
+		</footer>
+
+	</body>
 </html>
