@@ -12,10 +12,10 @@
 			<th class="table info", style="width: 25%;">
 				ユーザー名
 			</th>
-			<th class="table info", style="width: 10%;">
-				ボイス
+			<th class="table info", style="width: 15%;">
+				ボイスチャット
 			</th>
-			<th class="table info", style="width: 45%;">
+			<th class="table info", style="width: 40%;">
 				遊んでいるゲーム
 			</th>
 
@@ -30,25 +30,33 @@
 		<% @users.each do |user| %>
 			<tr>
 				<td class="table", style="width: 5%;">
-					<%= user.name %>
+
+					<% if user.image == nil %>
+						<%= image_tag "noimage.png", :size => "40x40" %>
+					<% else %>
+						<%= attachment_image_tag user, :image %>
+					<% end %>
+
 				</td>
 				<td class="table", style="width: 25%;">
 					<%= user.name %>
 				</td>
-				<td class="table", style="width: 10%;">
-					<%= user.name %>
+				<td class="table", style="width: 15%;">
+					<%= user.voice %>
 				</td>
-				<td class="table", style="width: 45%;">
-					<%= user.name %>
+				<td class="table", style="width: 40%;">
+					<%= user.id %>
+					<!--編集途中、ゲームの登録をしていないため-->
 				</td>
 
 				<% if user_signed_in? %>
 					<td class="table", style="width: 15%;">
-						<!--見た目のみ（リンク、条件分岐未設定）-->
-						<% if %>
-							<%= link_to "", games_path, class: "glyphicon glyphicon-plus-sign" %>
+						<!--見た目のみ（リンク未設定）-->
+						<% if user == current_user %>
+						<% elsif  %>
+							<%= link_to "フォロー", games_path, class: "btn btn-primary" %>
 						<% else %>
-							<%= link_to "", games_path, class: "glyphicon glyphicon-remove-sign" %>
+							<%= link_to "フォロー解除", games_path, class: "btn btn-danger" %>
 						<% end %>
 
 					</td>
