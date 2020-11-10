@@ -1,2 +1,62 @@
-<h1>Public::Users#index</h1>
-<p>Find me in app/views/public/users/index.html.erb</p>
+<div class="row">
+	<h3>ユーザー一覧</h3>
+	<div class="col-md-4">
+		<%= paginate @users %>
+	</div>
+	<!--style仮置き-->
+
+	<table class="table table-bordered">
+		<tr>
+			<th class="table info", style="width: 5%;">
+			</th>
+			<th class="table info", style="width: 25%;">
+				ユーザー名
+			</th>
+			<th class="table info", style="width: 10%;">
+				ボイス
+			</th>
+			<th class="table info", style="width: 45%;">
+				遊んでいるゲーム
+			</th>
+
+			<% if user_signed_in? %>
+				<th class="table info", style="width: 15%;">
+					フォロー／解除
+				</th>
+			<% end %>
+
+		</tr>
+
+		<% @users.each do |user| %>
+			<tr>
+				<td class="table", style="width: 5%;">
+					<%= user.name %>
+				</td>
+				<td class="table", style="width: 25%;">
+					<%= user.name %>
+				</td>
+				<td class="table", style="width: 10%;">
+					<%= user.name %>
+				</td>
+				<td class="table", style="width: 45%;">
+					<%= user.name %>
+				</td>
+
+				<% if user_signed_in? %>
+					<td class="table", style="width: 15%;">
+						<!--見た目のみ（リンク、条件分岐未設定）-->
+						<% if %>
+							<%= link_to "", games_path, class: "glyphicon glyphicon-plus-sign" %>
+						<% else %>
+							<%= link_to "", games_path, class: "glyphicon glyphicon-remove-sign" %>
+						<% end %>
+
+					</td>
+				<% end %>
+
+			</tr>
+		<% end %>
+	</table>
+
+	<%= paginate @users %>
+</div>
