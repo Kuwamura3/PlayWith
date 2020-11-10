@@ -1,2 +1,48 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="row">
+	<h3>プロフィール</h3>
+	
+	<div class="col-md-7">
+		<table class="table table-bordered">
+			<tr>
+				<th class="table info", style="width: 25%;">ハンドルネーム</th>
+				<td class="table">
+					<%= @user.name %>
+				</td>
+			</tr>
+	
+			<tr>
+				<th class="table info", style="width: 25%;">一言</th>
+				<td class="table">
+					<%= @user.introduction %>
+				</td>
+			</tr>
+	
+			<tr>
+				<th class="table info", style="width: 25%;">ボイスチャット</th>
+				<td class="table">
+					<%= @user.voice %>
+				</td>
+			</tr>
+			<tr>
+				<th class="table info", style="width: 25%;">Twitter</th>
+				<td class="table">
+					<% if @user.twitter == nil %>
+						未登録
+					<% else %>
+						<%= @user.twitter %>
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<th class="table info", style="width: 25%;">Discord</th>
+				<td class="table">
+					<% if (@user.discord_name == nil)||(@user.discord_number == nil) %>
+						未登録
+					<% else %>
+						<%= @user.discord_name %>#<%= @user.discord_number %>
+					<% end %>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
