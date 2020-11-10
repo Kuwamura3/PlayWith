@@ -15,6 +15,7 @@ class Public::UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@users_comments = UsersComment.all.order(id: "DESC") #降順
 	end
 
 	def update

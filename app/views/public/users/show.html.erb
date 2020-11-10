@@ -28,9 +28,6 @@
 			</div>
 		</div>
 
-
-
-
 		<div class="row">
 			<table class="table table-bordered">
 				<tr>
@@ -48,7 +45,7 @@
 				</tr>
 		
 				<tr>
-					<th class="table info", style="width: 25%;">ボイスチャット</th>
+					<th class="table info", style="width: 25%;">ボイスチャット可否</th>
 					<td class="table">
 						<%= @user.voice %>
 					</td>
@@ -77,5 +74,40 @@
 				</tr>
 			</table>
 		</div>
+
+		<div class="row">
+			<h4>遊びたいゲーム</h4>
+		</div>
+
+		<div class="row">
+			<span class="col-md-2">コメント</span>
+			<%= form_with(url: users_comments_path, method: :post, class: "form-horizontal", local: true) do |f| %>
+				<%= f.hidden_field :id, value: @user.id %>
+				<%= f.text_area :text, rows:"2", class: "col-md-6 comment" %>
+				<%= f.submit "送信", class: "btn btn-info col-md-offset-1 col-md-2" %>
+			<% end %>
+		</div>
+
+		<div class="row">
+			<table class="table table-hover col-md-offset-1 col-md-11">
+				<% @users_comments.each do |comment| %>
+					<tr>
+						<td class="table-noborder", style="width: 20%;">
+							<%= comment.user.name %>
+						</td>
+						<td class="table-noborder", style="width: 40%;">
+							<%= comment.text %>
+						</td>
+						<td class="table-noborder", style="width: 20%;">
+							<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<!--通知欄-->
 	</div>
 </div>

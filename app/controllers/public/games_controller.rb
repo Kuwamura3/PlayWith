@@ -20,7 +20,7 @@ class Public::GamesController < ApplicationController
       redirect_to games_path
     else
       #alert: "ゲームのタイトルを入力して下さい"
-      render :index
+      render :new
     end
   end
 
