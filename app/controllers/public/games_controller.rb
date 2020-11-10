@@ -10,7 +10,7 @@ class Public::GamesController < ApplicationController
   end
 
   def index
-    @games = Game.all
+    @games = Game.page(params[:page]).per(PER)
   end
 
   def create

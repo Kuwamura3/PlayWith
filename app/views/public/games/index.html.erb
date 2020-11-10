@@ -1,13 +1,43 @@
 <div class="row">
-	<h3>ゲーム一覧</h3>
-	<table class="table">
+	<div class="col-md-2">
+		<h3>ゲーム一覧</h3>
+	</div>
+	<!--style仮置き-->
+	<div class="col-md-offset-8 col-md-2", style="padding-top: 20px;">
+		<%= link_to "ゲームを追加したい", new_game_path, class:"btn btn-info btn-md" %>
+	</div>
+
+	<table class="table table-bordered">
+		<tr>
+			<th class="table info", style="width: 50%;">
+				ゲームタイトル
+			</th>
+			<th class="table info", style="width: 25%;">
+				遊んでいるユーザー人数
+			</th>
+			<th class="table info", style="width: 25%;">
+				プロフィールに追加・削除
+			</th>
+		</tr>
+
 		<% @games.each do |game| %>
 			<tr>
-				<td class="table">
+				<td class="table", style="width: 50%;">
 					<%= game.title %>
+				</td>
+				<td class="table", style="width: 25%;">
+					<%= game.users_games.count %>
+				</td>
+				<td class="table", style="width: 25%;">
+					<!--リンク、条件分岐未設定-->
+					<% if %>
+						<%= link_to "", games_path, class: "glyphicon glyphicon-plus-sign" %>
+					<% else %>
+						<%= link_to "", games_path, class: "glyphicon glyphicon-remove-sign" %>
+					<% end %>
 				</td>
 			</tr>
 		<% end %>
 	</table>
-	<%= link_to "ゲームを追加したい", new_game_path, class:"btn btn-info btn-md" %>
+	<%= paginate @games %>
 </div>
