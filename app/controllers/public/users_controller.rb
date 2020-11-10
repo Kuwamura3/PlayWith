@@ -7,6 +7,7 @@ class Public::UsersController < ApplicationController
   end
 
   def index
+    @users = User.page(params[:page]).per(PER)
   end
 
   def edit
