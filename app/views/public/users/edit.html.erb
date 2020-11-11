@@ -61,6 +61,13 @@
 
 <div class="row">
 	<h3>登録ゲーム編集</h3>
+	<div class="col-md-8">
+		<%= form_with(url: users_games_path, method: :post, class: "form-horizontal", local: true) do |f| %>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.collection_select(:game_id, @games, :id, :title, prompt: "ゲーム選択") %>
+			<%= f.submit "追加する", class: "btn btn-info" %>
+		<% end %>
+	</div>
 </div>
 
 <div class="row">

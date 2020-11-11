@@ -12,6 +12,7 @@ class Public::UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
+		@games = Game.all
 	end
 
 	def show
