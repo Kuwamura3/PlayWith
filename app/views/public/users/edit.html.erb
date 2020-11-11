@@ -1,5 +1,41 @@
 <div class="row">
 	<h3>プロフィール編集</h3>
+
+	<div class="col-md-12">
+		<%= form_with model:@user, local:true do |f| %>
+			<table class="table">
+				<tr>
+					<th class="table table-noborder">プロフィール画像</th>
+					<td class="table table-noborder"><%= f.attachment_field :image %></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder">ハンドルネーム</th>
+					<td class="table table-noborder"></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder">一言</th>
+					<td class="table table-noborder"></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder">ボイスチャット可否</th>
+					<td class="table table-noborder"></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder">Twitter</th>
+					<td class="table table-noborder"></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder">Discord</th>
+					<td class="table table-noborder"></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder">
+						<%= f.submit "更新する" %>
+					</th>
+				</tr>
+			</table>
+		<% end %>
+	</div>
 </div>
 
 <div class="row">
@@ -7,5 +43,7 @@
 </div>
 
 <div class="row">
-	<h3>プロフィールに戻る</h3>
+	<div class="col-md-offset-10 col-md-2">
+		<%= link_to "プロフィールに戻る", user_path(@user), class:"btn btn-default btn-md" %>
+	</div>
 </div>

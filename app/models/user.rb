@@ -10,6 +10,8 @@ class User < ApplicationRecord
 	has_many :users_games
 	has_many :posts
 
+  attachment :image #画像投稿用
+
 	enum voice: { 未登録: 0, ボイスチャット可: 1, ボイスチャット不可: 2}
 
 	# emailカラムを使用しない

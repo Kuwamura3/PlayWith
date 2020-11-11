@@ -31,7 +31,7 @@
 			<tr>
 				<td class="table", style="width: 5%;">
 
-					<% if user.image == nil %>
+					<% if user.image_id == nil %>
 						<%= image_tag "noimage.png", :size => "40x40" %>
 					<% else %>
 						<%= attachment_image_tag user, :image %>
