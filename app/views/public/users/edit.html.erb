@@ -62,6 +62,39 @@
 <div class="row">
 	<h3>登録ゲーム編集</h3>
 	<div class="col-md-8">
+		<table class="table">
+			<% @users_games.each_slice(3) do |users_game1,users_game2,users_game3| %>
+				<tr>
+					<td class="table table-noborder", style="width: 1%;">
+						<%= link_to "", users_games_path(users_game1), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
+					</td>
+					<td class="table table-noborder", style="width: 32%;">
+						<% if users_game1.present? %>
+							<%= users_game1.game.title %>
+						<% end %>
+					</td>
+
+					<td class="table table-noborder", style="width: 1%;">
+						<%= link_to "", users_games_path(users_game2), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
+					</td>
+					<td class="table table-noborder", style="width: 32%;">
+						<% if users_game2.present? %>
+							<%= users_game2.game.title %>
+						<% end %>
+					</td>
+
+					<td class="table table-noborder", style="width: 1%;">
+						<%= link_to "", users_games_path(users_game3), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
+					</td>
+					<td class="table table-noborder", style="width: 32%;">
+						<% if users_game3.present? %>
+							<%= users_game3.game.title %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+
 		<%= form_with(url: users_games_path, method: :post, class: "form-horizontal", local: true) do |f| %>
 			<%= f.hidden_field :user_id, value: current_user.id %>
 			<%= f.collection_select(:game_id, @games, :id, :title, prompt: "ゲーム選択") %>

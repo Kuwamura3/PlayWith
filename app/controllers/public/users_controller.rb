@@ -12,6 +12,8 @@ class Public::UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
+		@users_games = UsersGame.where(user_id: current_user.id).order(:game_id)
+		#ユーザーの遊びたいゲームを、ゲームid順に取得
 		@games = Game.all
 	end
 
