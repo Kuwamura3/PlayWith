@@ -4,10 +4,10 @@
 		<div class="row">
 			<div class="col-md-4", style="padding-bottom: 10px;">
 				<h3>プロフィール</h3>
-				<% if @user.image_id == nil %>
+				<% if !@user.image_id.present? %>
 					<%= image_tag "noimage.png", :size => "100x100" %>
 				<% else %>
-					<%= attachment_image_tag @user, :image %>
+					<%= attachment_image_tag @user, :image, :size => "100x100" %>
 				<% end %>
 			</div>
 
@@ -54,7 +54,7 @@
 				<tr>
 					<th class="table info", style="width: 25%;">Twitter</th>
 					<td class="table">
-						<% if @user.twitter == nil %>
+						<% if !@user.twitter.present? %>
 							未登録
 						<% else %>
 							<%= @user.twitter %>
@@ -65,7 +65,7 @@
 				<tr>
 					<th class="table info", style="width: 25%;">Discord</th>
 					<td class="table">
-						<% if (@user.discord_name == nil)||(@user.discord_number == nil) %>
+						<% if !@user.discord_name.present? || !@user.discord_number.present? %>
 							未登録
 						<% else %>
 							<%= @user.discord_name %>#<%= @user.discord_number %>

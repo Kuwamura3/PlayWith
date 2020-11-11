@@ -19,12 +19,26 @@
 				<tr>
 					<th class="table table-noborder", style="width: 25%;">ボイスチャット可否</th>
 					<td class="table table-noborder">
-						<%= radio_button_tag("voice", "0") %>
-						<%= f.label :"未設定　" %>
-						<%= radio_button_tag("voice", "1") %>
-						<%= f.label :"ＯＫ　" %>
-						<%= radio_button_tag("voice", "2") %>
-						<%= f.label :"ＮＧ　" %>
+						<% if @user.voice == "未登録" %>
+							<%= f.radio_button :voice, :"未登録", checked: true %>
+						<% else %>
+							<%= f.radio_button :voice, :"未登録" %>
+						<% end %>
+						<%= f.label :"未登録　　" %>
+						
+						<% if @user.voice == "ＯＫ" %>
+							<%= f.radio_button :voice, :"ＯＫ", checked: true %>
+						<% else %>
+							<%= f.radio_button :voice, :"ＯＫ" %>
+						<% end %>
+						<%= f.label :"ＯＫ　　" %>
+						
+						<% if @user.voice == "ＮＧ" %>
+							<%= f.radio_button :voice, :"ＮＧ", checked: true %>
+						<% else %>
+							<%= f.radio_button :voice, :"ＮＧ" %>
+						<% end %>
+						<%= f.label :"ＮＧ" %>
 					</td>
 				</tr>
 				<tr>
