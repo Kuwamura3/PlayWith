@@ -38,11 +38,12 @@
 
 				<% if user_signed_in? %>
 					<td class="table", style="width: 25%;">
-						<!--見た目のみ（リンク、条件分岐未設定）-->
-						<% if %>
-							<%= link_to "", games_path, class: "glyphicon glyphicon-plus-sign" %>
+
+						<% if @users_games.find_by(game_id: game.id) %>
+							<%= link_to "削除する", users_game_path(game), method: :delete,  class: "glyphicon glyphicon-remove-sign" %>
 						<% else %>
-							<%= link_to "", games_path, class: "glyphicon glyphicon-remove-sign" %>
+							<%= link_to "追加する", users_games_path(game_id: game.id), method: :post, class: "glyphicon glyphicon-plus-sign" %>
+							<!--game_idを受け渡して、POST先のcreateで受け取って保存↑-->
 						<% end %>
 
 					</td>

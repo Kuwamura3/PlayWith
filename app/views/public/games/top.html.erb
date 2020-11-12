@@ -1,30 +1,37 @@
 <div class="row">
 	<h3>Top</h3>
 
-	<h4>このサイトについて</h4>
-	<p>「Play With」は、オンラインゲームを始めたいけど、一緒に遊ぶ仲間がいない、かといって野良は怖い、という方々が遊び仲間を探すためのサイトです。</p>
+	<div class="col-md-12">
+		<h4>このサイトについて</h4>
+		<p>「Play With」は、オンラインゲームを始めたいけど、一緒に遊ぶ仲間がいない、かといって野良は怖い、という方々が遊び仲間を探すためのサイトです。</p>
 
-	<h4>サイトマップ</h4>
-	<table class="table">
-		<tr>
-			<th class="table-noborder">About</th>
-			<td class="table-noborder">：このサイトの使い方</td>
-		</tr>
-		<tr>
-			<th class="table-noborder">Mypage</th>
-			<td class="table-noborder">：自分のプロフィールやフォローフォロワー、通知、コメントなど</td>
-		</tr>
-		<tr>
-			<th class="table-noborder">Games</th>
-			<td class="table-noborder">：みんなが遊んでいるゲームの一覧</td>
-		</tr>
-		<tr>
-			<th class="table-noborder">Users</th>
-			<td class="table-noborder">：このサイトを使っているユーザーの一覧</td>
-		</tr>
-	</table>
+		<h4>サイトマップ</h4>
+		<table class="table">
+			<tr>
+				<th class="table-noborder">About</th>
+				<td class="table-noborder">：このサイトの使い方</td>
+			</tr>
+			<tr>
+				<th class="table-noborder">Mypage</th>
+				<td class="table-noborder">：自分のプロフィールやフォローフォロワー、通知、コメントなど</td>
+			</tr>
+			<tr>
+				<th class="table-noborder">Games</th>
+				<td class="table-noborder">：みんなが遊んでいるゲームの一覧</td>
+			</tr>
+			<tr>
+				<th class="table-noborder">Users</th>
+				<td class="table-noborder">：このサイトを使っているユーザーの一覧</td>
+			</tr>
+		</table>
 
-	<h4>よく遊ばれているゲーム</h4>
-	<p><%= link_to "もっと見る", games_path %></p>
-
+		<h4>よく遊ばれているゲーム</h4>
+			<table class="table">
+				<td class="table table-noborder", style="width: 5%;"></td>
+				<% @games.each do |game| %>
+					<td class="table table-noborder", style="font-size: 18px; width: 18%;"><%= game.title %></td>
+				<% end %>
+			</table>
+		<p class="text-right"><%= link_to "もっと見る", games_path %></p>
+	</div>
 </div>

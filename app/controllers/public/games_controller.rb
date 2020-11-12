@@ -1,6 +1,8 @@
 class Public::GamesController < ApplicationController
 
   def top
+    @games = Game.joins(:users_games).group(:id).order("count(users_games.user_id)DESC").limit(5)
+    #遊んでいる人数が多いゲームTOP5を選出
   end
 
   def about
@@ -11,6 +13,7 @@ class Public::GamesController < ApplicationController
 
   def index
     @games = Game.page(params[:page]).per(PER)
+    @users_games = current_user.users_games
   end
 
   def create
