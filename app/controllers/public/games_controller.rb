@@ -13,6 +13,7 @@ class Public::GamesController < ApplicationController
 
   def index
     @games = Game.page(params[:page]).per(PER)
+    @users_games = current_user.users_games
   end
 
   def create
