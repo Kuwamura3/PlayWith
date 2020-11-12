@@ -1,5 +1,7 @@
 class Public::UsersGamesController < ApplicationController
 
+
+# current_user使えばもっと簡単では？？？？？後で修正
 	def create
 		@users_game = UsersGame.new(users_game_params)
 		@users_game_own = UsersGame.where(user_id: current_user.id)
