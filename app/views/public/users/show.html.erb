@@ -11,21 +11,23 @@
 				<% end %>
 			</div>
 
-			<div class="col-md-8", style="padding-top: 60px;">
+			<% if user_signed_in? %>
+				<div class="col-md-8", style="padding-top: 60px;">
 
-				<% if @user == current_user %>
-					<p><%= link_to "フォロー・フォロワー一覧", relationships_path, class: "btn btn-primary" %></p>
-					<p><%= link_to "編集する", edit_user_path(@user), class: "btn btn-primary" %></p>
-				<% else %>
-
-					<% if %>
-						<p><%= link_to "フォロー", games_path, class: "btn btn-info" %></p>
+					<% if @user == current_user %>
+						<p><%= link_to "フォロー・フォロワー一覧", relationships_path, class: "btn btn-primary" %></p>
+						<p><%= link_to "編集する", edit_user_path(@user), class: "btn btn-primary" %></p>
 					<% else %>
-						<p><%= link_to "フォロー解除", games_path, class: "btn btn-danger" %></p>
-					<% end %>
 
-				<% end %>
-			</div>
+						<% if %>
+							<p><%= link_to "フォロー", games_path, class: "btn btn-info" %></p>
+						<% else %>
+							<p><%= link_to "フォロー解除", games_path, class: "btn btn-danger" %></p>
+						<% end %>
+
+					<% end %>
+				</div>
+			<% end %>
 		</div>
 
 		<div class="row">

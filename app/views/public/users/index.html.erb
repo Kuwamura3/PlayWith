@@ -39,14 +39,20 @@
 
 				</td>
 				<td class="table", style="width: 25%;">
-					<%= user.name %>
+					<%= link_to user_path(user) do %>
+						<%= user.name %>
+					<% end %>
 				</td>
 				<td class="table", style="width: 15%;">
 					<%= user.voice %>
 				</td>
 				<td class="table", style="width: 40%;">
-					<%= user.id %>
-					<!--編集途中、ゲームの登録をしていないため-->
+					<% @users_games.where(user_id: user.id).order("RANDOM()").limit(3).each do |users_game| %>
+						<span><%= users_game.game.title %>　</span>
+					<% end %>
+					<% if @users_games.where(user_id: user.id).count >= 4 %>
+						<span>etc...</span>
+					<% end %>
 				</td>
 
 				<% if user_signed_in? %>
