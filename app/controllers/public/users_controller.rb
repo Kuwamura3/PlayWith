@@ -13,13 +13,15 @@ class Public::UsersController < ApplicationController
 	def edit
 		@user = User.find(params[:id])
 		@users_games = UsersGame.where(user_id: current_user.id).order(:game_id)
-		#ユーザーの遊びたいゲームを、ゲームid順に取得
+		#↑ユーザーの遊びたいゲームを、ゲームid順に取得
 		@games = Game.all
 	end
 
 	def show
 		@user = User.find(params[:id])
-		@users_comments = UsersComment.all.order(id: "DESC") #降順
+		@users_games = UsersGame.where(user_id: params[:id]).order(:game_id)
+		#↑ユーザーの遊びたいゲームを、ゲームid順に取得
+		@users_comments = UsersComment.where(commented_id: params[:id]).order(id: "DESC") #降順
 	end
 
 	def update

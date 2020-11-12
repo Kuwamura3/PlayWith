@@ -2,9 +2,24 @@ class Public::UsersGamesController < ApplicationController
 
 	def create
 		@users_game = UsersGame.new(users_game_params)
-		# ↓選択したゲームが既に登録済みだった場合、重複して保存しない
-		@users_game_registered = UsersGame.find_by(game_id: @users_game.game_id)
-		if !@users_game_registered.present?
+		@users_game_own = UsersGame.where(user_id: current_user.id)
+		if @users_game_own.present?
+			# ↓選択したゲームが既に登録済みだった場合、重複して保存しない
+			@users_game_registered = @users_game_own.find_by(game_id: @users_game.game_id)
+			if !@users_game_registered.present?
+				if @users_game.save
+					# サクセスメッセージ
+					redirect_to edit_user_path(current_user)
+				else
+					# エラーメッセージ(選択してください)
+					#	render "edit"
+				end
+			else
+				# エラーメッセージ(登録済み)
+				#	render "edit"
+			end
+		else
+
 			if @users_game.save
 				# サクセスメッセージ
 				redirect_to edit_user_path(current_user)
@@ -12,9 +27,7 @@ class Public::UsersGamesController < ApplicationController
 				# エラーメッセージ(選択してください)
 				#	render "edit"
 			end
-		else
-			# エラーメッセージ(登録済み)
-			#	render "edit"
+
 		end
 	end
 
