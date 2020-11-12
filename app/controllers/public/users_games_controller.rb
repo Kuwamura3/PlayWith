@@ -1,13 +1,9 @@
 class Public::UsersGamesController < ApplicationController
 
-
-# current_user使えばもっと簡単では？？？？？後で修正
 	def create
 		@users_game = UsersGame.new(users_game_params)
-		@users_game_own = UsersGame.where(user_id: current_user.id)
-		if @users_game_own.present?
-			# ↓選択したゲームが既に登録済みだった場合、重複して保存しない
-			@users_game_registered = @users_game_own.find_by(game_id: @users_game.game_id)
+		if current_user.users_games.present?
+			@users_game_registered = current_user.users_games.find_by(game_id: @users_game.game_id)
 			if !@users_game_registered.present?
 				if @users_game.save
 					# サクセスメッセージ
@@ -34,6 +30,14 @@ class Public::UsersGamesController < ApplicationController
 	end
 
 	def destroy
+		@users_game = UsersGame.find_by(id: params[:id])
+		if @users_game.destroy
+			# サクセスメッセージ
+			redirect_to edit_user_path(current_user)
+		else
+			# エラーメッセージ
+			redirect_to edit_user_path(current_user)
+		end
 	end
 	
 	private

@@ -67,7 +67,7 @@
 				<tr>
 					<% if users_game1.present? %>
 						<td class="table table-noborder", style="width: 1%;">
-							<%= link_to "", users_games_path(users_game1), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
+							<%= link_to "", users_game_path(users_game1), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
 						</td>
 						<td class="table table-noborder", style="width: 32%;">
 							<%= users_game1.game.title %>
@@ -76,7 +76,7 @@
 
 					<% if users_game2.present? %>
 						<td class="table table-noborder", style="width: 1%;">
-							<%= link_to "", users_games_path(users_game2), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
+							<%= link_to "", users_game_path(users_game2), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
 						</td>
 						<td class="table table-noborder", style="width: 32%;">
 							<%= users_game2.game.title %>
@@ -85,7 +85,7 @@
 
 					<% if users_game3.present? %>
 						<td class="table table-noborder", style="width: 1%;">
-							<%= link_to "", users_games_path(users_game3), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
+							<%= link_to "", users_game_path(users_game3), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
 						</td>
 						<td class="table table-noborder", style="width: 32%;">
 							<%= users_game3.game.title %>

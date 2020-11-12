@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
 	def search
 	end
 
-	def game
+	def gamer
 	end
 
 	def index
