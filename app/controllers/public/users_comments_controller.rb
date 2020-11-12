@@ -9,7 +9,7 @@ class Public::UsersCommentsController < ApplicationController
       redirect_to user_path(params[:id])
     else
       #alert: "コメントの内容を入力して下さい"
-      # render "index" レンダリング上手くいかず
+      render "users/index"
     end
   end
 

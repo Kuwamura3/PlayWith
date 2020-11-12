@@ -1,2 +1,110 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="row">
+	<h3>プロフィール編集</h3>
+
+	<div class="col-md-8">
+		<%= form_with model:@user, local:true do |f| %>
+			<table class="table">
+				<tr>
+					<th class="table table-noborder", style="width: 25%;">プロフィール画像</th>
+					<td class="table table-noborder"><%= f.attachment_field :image %></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 25%;">ハンドルネーム</th>
+					<td class="table table-noborder"><%= f.text_field :name %></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 25%;">一言</th>
+					<td class="table table-noborder"><%= f.text_area :introduction, :size=>"50px" %></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 25%;">ボイスチャット可否</th>
+					<td class="table table-noborder">
+						<% if @user.voice == "未登録" %>
+							<%= f.radio_button :voice, :"未登録", checked: true %>
+						<% else %>
+							<%= f.radio_button :voice, :"未登録" %>
+						<% end %>
+						<%= f.label :"未登録　　" %>
+						
+						<% if @user.voice == "ＯＫ" %>
+							<%= f.radio_button :voice, :"ＯＫ", checked: true %>
+						<% else %>
+							<%= f.radio_button :voice, :"ＯＫ" %>
+						<% end %>
+						<%= f.label :"ＯＫ　　" %>
+						
+						<% if @user.voice == "ＮＧ" %>
+							<%= f.radio_button :voice, :"ＮＧ", checked: true %>
+						<% else %>
+							<%= f.radio_button :voice, :"ＮＧ" %>
+						<% end %>
+						<%= f.label :"ＮＧ" %>
+					</td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 25%;">Twitter</th>
+					<td class="table table-noborder"><%= f.text_field :twitter %></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 25%;">Discord</th>
+					<td class="table table-noborder"><%= f.text_field :discord_name, class: "form-inline" %> # <%= f.text_field :discord_number, class: "form-inline", :size=>"5px" %></td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 25%;">
+						<%= f.submit "更新する", class:"btn btn-info btn-md" %>
+					</th>
+				</tr>
+			</table>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<h3>登録ゲーム編集</h3>
+	<div class="col-md-8">
+		<table class="table">
+			<% @users_games.each_slice(3) do |users_game1,users_game2,users_game3| %>
+				<tr>
+					<% if users_game1.present? %>
+						<td class="table table-noborder", style="width: 1%;">
+							<%= link_to "", users_games_path(users_game1), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
+						</td>
+						<td class="table table-noborder", style="width: 32%;">
+							<%= users_game1.game.title %>
+						</td>
+					<% end %>
+
+					<% if users_game2.present? %>
+						<td class="table table-noborder", style="width: 1%;">
+							<%= link_to "", users_games_path(users_game2), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
+						</td>
+						<td class="table table-noborder", style="width: 32%;">
+							<%= users_game2.game.title %>
+						</td>
+					<% end %>
+
+					<% if users_game3.present? %>
+						<td class="table table-noborder", style="width: 1%;">
+							<%= link_to "", users_games_path(users_game3), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
+						</td>
+						<td class="table table-noborder", style="width: 32%;">
+							<%= users_game3.game.title %>
+						</td>
+					<% end %>
+				</tr>
+			<% end %>
+		</table>
+
+		<%= form_with(url: users_games_path, method: :post, class: "form-horizontal", local: true) do |f| %>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.collection_select(:game_id, @games, :id, :title, prompt: "ゲーム選択") %>
+			<%= f.submit "追加する", class: "btn btn-info" %>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-offset-10 col-md-2">
+		<%= link_to "プロフィールに戻る", user_path(@user), class:"btn btn-default btn-md" %>
+	</div>
+</div>
