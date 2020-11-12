@@ -7,8 +7,12 @@ Rails.application.routes.draw do
 	}
 
 	scope module: :public do
+		resources :users_games, only: [:create, :destroy]
+	end
+
+	scope module: :public do
 		get 'users/search'
-		get 'users/game'
+		get 'users/gamer'
 		resources :users, only: [:index, :edit, :show, :update]
 	end
 
@@ -21,10 +25,6 @@ Rails.application.routes.draw do
 		get 'about' => 'games#about'
 		get 'games/search'
 		resources :games, only: [:index, :create, :new]
-	end
-
-	scope module: :public do
-		resources :users_games, only: [:create, :destroy]
 	end
 
 	scope module: :public do

@@ -30,6 +30,14 @@ class Public::UsersGamesController < ApplicationController
 	end
 
 	def destroy
+		@users_game = UsersGame.find_by(id: params[:id])
+		if @users_game.destroy
+			# サクセスメッセージ
+			redirect_to edit_user_path(current_user)
+		else
+			# エラーメッセージ
+			redirect_to edit_user_path(current_user)
+		end
 	end
 	
 	private
