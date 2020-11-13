@@ -1,6 +1,8 @@
 class Public::RelationshipsController < ApplicationController
 
 	def index
+		@followings = current_user.followings
+		@followers = current_user.followers
 	end
 
 	def create
@@ -12,6 +14,8 @@ class Public::RelationshipsController < ApplicationController
 			flash[:success] = "ユーザーをフォローしました"
 			if path[:action] == "show"
 				redirect_to user_path(@user)
+			elsif path[:controller] == "public/relationships" #フォロー一覧からの場合
+				redirect_to relationships_path
 			else
 				redirect_to users_path
 			end
@@ -30,6 +34,8 @@ class Public::RelationshipsController < ApplicationController
 			flash[:success] = "ユーザーをフォローを解除しました"
 			if path[:action] == "show"
 				redirect_to user_path(@user)
+			elsif path[:controller] == "public/relationships" #フォロー一覧からの場合
+				redirect_to relationships_path
 			else
 				redirect_to users_path
 			end
