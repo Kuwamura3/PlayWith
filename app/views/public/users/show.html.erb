@@ -19,10 +19,16 @@
 						<p><%= link_to "編集する", edit_user_path(@user), class: "btn btn-primary" %></p>
 					<% else %>
 
-						<% if %>
-							<p><%= link_to "フォロー", games_path, class: "btn btn-info" %></p>
+						<% if current_user.following?(@user) %>
+							<%= form_for(current_user.relationships.find_by(follow_id: @user.id), html: { method: :delete }) do |f| %>
+								<%= hidden_field_tag :follow_id, @user.id %>
+								<p style="width: 120px;"><%= f.submit 'フォロー解除', class: 'btn btn-danger btn-block' %></p>
+							<% end %>
 						<% else %>
-							<p><%= link_to "フォロー解除", games_path, class: "btn btn-danger" %></p>
+							<%= form_for(current_user.relationships.build) do |f| %>
+								<%= hidden_field_tag :follow_id, @user.id %>
+								<p style="width: 120px;"><%= f.submit 'フォローする', class: 'btn btn-info btn-block' %></p>
+							<% end %>
 						<% end %>
 
 					<% end %>
