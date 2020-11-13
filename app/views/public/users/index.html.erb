@@ -57,12 +57,20 @@
 
 				<% if user_signed_in? %>
 					<td class="table", style="width: 15%;">
-						<!--見た目のみ（リンク未設定）-->
 						<% if user == current_user %>
-						<% elsif  %>
-							<%= link_to "フォロー", games_path, class: "btn btn-primary" %>
+							<!--自身の欄にはボタンを表示しない-->
 						<% else %>
-							<%= link_to "フォロー解除", games_path, class: "btn btn-danger" %>
+							<% if current_user.following?(user) %>
+								<%= form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
+									<%= hidden_field_tag :follow_id, user.id %>
+									<p style="width: 120px;"><%= f.submit 'フォロー解除', class: 'btn btn-danger btn-block' %></p>
+								<% end %>
+							<% else %>
+								<%= form_for(current_user.relationships.build) do |f| %>
+									<%= hidden_field_tag :follow_id, user.id %>
+									<p style="width: 120px;"><%= f.submit 'フォローする', class: 'btn btn-info btn-block' %></p>
+								<% end %>
+							<% end %>
 						<% end %>
 
 					</td>
