@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_140239) do
+ActiveRecord::Schema.define(version: 2020_11_14_074754) do
 
   create_table "games", force: :cascade do |t|
     t.string "title"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_11_13_140239) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.text "introduction", default: "よろしくお願いします"
+    t.string "introduction", default: "よろしくお願いします"
     t.string "image_id"
     t.integer "voice", default: 0
     t.string "twitter"
