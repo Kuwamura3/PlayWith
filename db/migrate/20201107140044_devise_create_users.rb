@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       t.string :name
-      t.text :introduction, default: "よろしくお願いします"
+      t.text :introduction
       t.string :image
       t.integer :voice, default: 0 #未設定
       t.string :twitter
