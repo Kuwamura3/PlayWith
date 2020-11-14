@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.table-noborder {
+  border-top: 0px !important;
+  border-bottom: 0px !important;
+}
+
+.glyphicon-plus-sign {
+  color: blue;
+}
+
+.glyphicon-remove-sign {
+  color: red;
+}
