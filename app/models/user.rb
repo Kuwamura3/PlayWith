@@ -14,6 +14,7 @@ class User < ApplicationRecord
 	has_many :users_comments
 	has_many :notifications
 	has_many :users_games
+	has_many :playings, through: :users_games, source: :game
 	has_many :posts
 
   attachment :image #画像投稿用

@@ -1,5 +1,5 @@
 <div class="row">
-	<h3>ユーザー検索 “<%= @game %>” を遊んでいる</h3>
+	<h3>ユーザー検索 “<%= @game.title %>” を遊んでいる</h3>
 
-	<%= render partial: "public/users/table", locals: { users: @contents } %>
+	<%= render partial: "public/users/table", locals: { users: @users } %>
 </div>

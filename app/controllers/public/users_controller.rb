@@ -4,6 +4,9 @@ class Public::UsersController < ApplicationController
 	end
 
 	def gamer
+		@game = Game.find_by(id: params[:game_id])
+		@users = @game.players.page(params[:page]).per(PER)
+		@users_games = UsersGame.all
 	end
 
 	def index

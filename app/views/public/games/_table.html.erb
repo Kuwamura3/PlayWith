@@ -28,7 +28,9 @@
 	<% games.each do |game| %>
 		<tr>
 			<td class="table", style="width: 50%;">
-				<%= game.title %>
+				<%= link_to users_gamer_path(game_id: game.id) do %>
+					<%= game.title %>
+				<% end %>
 			</td>
 			<td class="table", style="width: 25%;">
 				<%= game.users_games.count %>
