@@ -23,6 +23,7 @@ class Public::UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@users_games = current_user.playings.order(:game_id)
 		@users_comments = UsersComment.where(commented_id: params[:id]).order(id: "DESC") #降順
+		@notifications = Notification.where(user_id: @user.id)
 	end
 
 	def update

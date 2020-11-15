@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_14_074754) do
+ActiveRecord::Schema.define(version: 2020_11_15_082150) do
 
   create_table "games", force: :cascade do |t|
     t.string "title"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 2020_11_14_074754) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "receiver_id"
+    t.integer "user_id"
     t.integer "sender_id"
-    t.integer "type"
+    t.integer "kind"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
