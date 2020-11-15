@@ -1,0 +1,56 @@
+<div class="col-md-4">
+	<%= paginate games %>
+</div>
+<!--style仮置き-->
+<% if user_signed_in? %>
+	<div class="col-md-offset-6 col-md-2", style="padding-top: 20px;">
+		<%= link_to "ゲームを追加したい", new_game_path, class:"btn btn-info btn-md" %>
+	</div>
+<% end %>
+
+<table class="table table-bordered">
+	<tr>
+		<th class="table info", style="width: 50%;">
+			ゲームタイトル
+		</th>
+		<th class="table info", style="width: 25%;">
+			遊んでいるユーザー人数
+		</th>
+
+		<% if user_signed_in? %>
+			<th class="table info", style="width: 25%;">
+				プロフィールに追加・削除
+			</th>
+		<% end %>
+
+	</tr>
+
+	<% games.each do |game| %>
+		<tr>
+			<td class="table", style="width: 50%;">
+				<%= game.title %>
+			</td>
+			<td class="table", style="width: 25%;">
+				<%= game.users_games.count %>
+			</td>
+
+			<% if user_signed_in? %>
+				<td class="table", style="width: 25%;">
+
+					<% if @users_games.find_by(game_id: game.id) %>
+						<%= link_to "削除する", users_game_path(game), method: :delete,  class: "glyphicon glyphicon-remove-sign" %>
+					<% else %>
+						<%= link_to "追加する", users_games_path(game_id: game.id), method: :post, class: "glyphicon glyphicon-plus-sign" %>
+						<!--game_idを受け渡して、POST先のcreateで受け取って保存↑-->
+					<% end %>
+
+				</td>
+			<% end %>
+
+		</tr>
+	<% end %>
+</table>
+
+<div class="col-md-4">
+	<%= paginate games %>
+</div>

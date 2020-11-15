@@ -1,2 +1,5 @@
-<h1>Public::Users#game</h1>
-<p>Find me in app/views/public/users/game.html.erb</p>
+<div class="row">
+	<h3>ユーザー検索 “<%= @game %>” を遊んでいる</h3>
+
+	<%= render partial: "public/users/table", locals: { users: @contents } %>
+</div>

@@ -16,7 +16,7 @@ class Public::GamesController < ApplicationController
           @users_games = current_user.users_games
         end
         @contents = Game.where("title LIKE ?", "%#{params[:search_content]}%").page(params[:page]).per(PER)
-        render :search
+        # render :search
       elsif params[:search_model] == "2"
         @users_games = UsersGame.all
         @contents = User.where("name LIKE ?", "%#{params[:search_content]}%").page(params[:page]).per(PER)
