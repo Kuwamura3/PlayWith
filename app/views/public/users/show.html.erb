@@ -93,24 +93,24 @@
 							</td>
 							<td class="table table-noborder", style="width: 30%;">
 								<% if game1.present? %>
-									<%= link_to users_gamer_path(game_id: game1.game.id) do %>
-										<%= game1.game.title %>
+									<%= link_to users_gamer_path(game_id: game1.id) do %>
+										<%= game1.title %>
 									<% end %>
 								<% end %>
 							</td>
 		
 							<td class="table table-noborder", style="width: 30%;">
 								<% if game2.present? %>
-									<%= link_to users_gamer_path(game_id: game2.game.id) do %>
-										<%= game2.game.title %>
+									<%= link_to users_gamer_path(game_id: game2.id) do %>
+										<%= game2.title %>
 									<% end %>
 								<% end %>
 							</td>
 		
 							<td class="table table-noborder", style="width: 30%;">
 								<% if game3.present? %>
-									<%= link_to users_gamer_path(game_id: game3.game.id) do %>
-										<%= game3.game.title %>
+									<%= link_to users_gamer_path(game_id: game3.id) do %>
+										<%= game3.title %>
 									<% end %>
 								<% end %>
 							</td>

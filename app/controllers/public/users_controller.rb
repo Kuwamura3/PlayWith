@@ -16,15 +16,14 @@ class Public::UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
-		@users_games = UsersGame.where(user_id: current_user.id).order(:game_id)
+		@users_games = current_user.playings.order(:game_id)
 		#↑ユーザーの遊びたいゲームを、ゲームid順に取得
 		@games = Game.all
 	end
 
 	def show
 		@user = User.find(params[:id])
-		@users_games = UsersGame.where(user_id: params[:id]).order(:game_id)
-		#↑ユーザーの遊びたいゲームを、ゲームid順に取得
+		@users_games = current_user.playings.order(:game_id)
 		@users_comments = UsersComment.where(commented_id: params[:id]).order(id: "DESC") #降順
 	end
 
@@ -35,6 +34,9 @@ class Public::UsersController < ApplicationController
 			redirect_to user_path(@user)
 		else
 			# エラーメッセージ
+			@user = User.find(params[:id])
+			@users_games = current_user.playings.order(:game_id)
+			@games = Game.all
 			render "edit"
 		end
 	end

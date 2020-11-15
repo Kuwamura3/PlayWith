@@ -17,11 +17,17 @@ class Public::UsersGamesController < ApplicationController
 						redirect_to edit_user_path(current_user)
 					else
 						# エラーメッセージ(選択してください)
-						#	render "edit"
+						@user = current_user
+						@users_games = current_user.playings.order(:game_id)
+						@games = Game.all
+						render template: "public/users/edit"
 					end
 				else
 					# エラーメッセージ(登録済み)
-					#	render "edit"
+					@user = current_user
+					@users_games = current_user.playings.order(:game_id)
+					@games = Game.all
+					render template: "public/users/edit"
 				end
 			else
 				if @users_game.save
@@ -29,7 +35,10 @@ class Public::UsersGamesController < ApplicationController
 					redirect_to edit_user_path(current_user)
 				else
 					# エラーメッセージ(選択してください)
-					#	render "edit"
+					@user = current_user
+					@users_games = current_user.playings.order(:game_id)
+					@games = Game.all
+					render template: "public/users/edit"
 				end
 			end
 
@@ -41,9 +50,6 @@ class Public::UsersGamesController < ApplicationController
 			if @users_game.save
 				# サクセスメッセージ
 				redirect_to games_path
-			else
-				# エラーメッセージ(選択してください)
-				#	render "edit"
 			end
 		end
 	end
@@ -53,12 +59,9 @@ class Public::UsersGamesController < ApplicationController
 
 		# 編集画面からの場合idを受け取るので、一意に定まる
 		if path[:action] == "edit"
-			@users_game = UsersGame.find_by(id: params[:id])
+			@users_game = UsersGame.find_by(game_id: params[:id])
 			if @users_game.destroy
 				# サクセスメッセージ
-				redirect_to edit_user_path(current_user)
-			else
-				# エラーメッセージ
 				redirect_to edit_user_path(current_user)
 			end
 
@@ -67,9 +70,6 @@ class Public::UsersGamesController < ApplicationController
 			@users_game = current_user.users_games.find_by(game_id: params[:id])
 			if @users_game.destroy
 				# サクセスメッセージ
-				redirect_to games_path
-			else
-				# エラーメッセージ
 				redirect_to games_path
 			end
 		end
