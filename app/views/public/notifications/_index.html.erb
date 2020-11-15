@@ -1,3 +1,20 @@
 <% @notifications.each do |notification| %>
-<%= notification.type %>
+	<div class="row">
+		<table class="table table-bordered col-md-12">
+			<tr>
+				<th class="table info">通知欄</th>
+			</tr>
+			<% if notification.kind == "フォロー" %>
+				<tr>
+					<td class="table">
+						<p><%= @users.find(notification.sender_id).name %>さんにフォローされました</p>
+						<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+					</td>
+				</tr>
+
+			<% elsif notification.kind == "投稿" %>
+				<%= @users.find(notification.sender_id).name %>さんが
+			<% end %>
+		</table>
+	</div>
 <% end %>

@@ -20,6 +20,7 @@ class Public::UsersController < ApplicationController
 	end
 
 	def show
+		@users = User.all
 		@user = User.find(params[:id])
 		@users_games = current_user.playings.order(:game_id)
 		@users_comments = UsersComment.where(commented_id: params[:id]).order(id: "DESC") #降順
