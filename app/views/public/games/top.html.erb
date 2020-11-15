@@ -29,7 +29,11 @@
 			<table class="table">
 				<td class="table table-noborder", style="width: 5%;"></td>
 				<% @games.each do |game| %>
-					<td class="table table-noborder", style="font-size: 18px; width: 18%;"><%= game.title %></td>
+					<td class="table table-noborder", style="font-size: 18px; width: 18%;">
+						<%= link_to users_gamer_path(game_id: game.id) do %>
+							<%= game.title %>
+						<% end %>
+					</td>
 				<% end %>
 			</table>
 		<p class="text-right"><%= link_to "もっと見る", games_path %></p>
