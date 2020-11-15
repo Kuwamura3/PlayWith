@@ -163,6 +163,15 @@
 
 	<div class="col-md-4">
 		<% if @user == current_user %>
+			<div class="row post-form">
+				<%= form_with(url: posts_path, method: :post, class: "form-horizontal", local: true) do |f| %>
+					<%= f.hidden_field :user_id, value: @user.id %>
+					<%= f.collection_select(:game_id, @users_games, :id, :title) %>
+					<%= f.select :kind, {"を新しく始めました":1, "で遊びたい":2}, {class: "form-control", required: true} %>
+					<%= f.submit "投稿", class: "btn btn-info" %>
+				<% end %>
+			</div>
+
 			<%= render partial: "public/notifications/index", locals: { notifications: @notifications } %>
 		<% end %>
 	</div>
