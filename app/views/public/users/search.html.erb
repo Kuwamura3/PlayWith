@@ -1,2 +1,8 @@
-<h1>Public::Users#search</h1>
-<p>Find me in app/views/public/users/search.html.erb</p>
+<div class="row">
+	<h3>ユーザー検索 “<%= @word %>” を含む</h3>
+	<% if @contents.present? %>
+		<%= render partial: "public/users/table", locals: { users: @contents } %>
+	<% else %>
+		<h4>　ユーザーはいません。</h4>
+	<% end %>
+</div>

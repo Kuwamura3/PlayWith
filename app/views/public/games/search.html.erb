@@ -1,2 +1,8 @@
-<h1>Public::Games#search</h1>
-<p>Find me in app/views/public/games/search.html.erb</p>
+<div class="row">
+	<h3>ゲーム “<%= @word %>” を含む</h3>
+	<% if @contents.present? %>
+		<%= render partial: "public/games/table", locals: { games: @contents } %>
+	<% else %>
+		<h4>　ゲームはありません。</h4>
+	<% end %>
+</div>

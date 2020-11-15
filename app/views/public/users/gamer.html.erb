@@ -1,2 +1,8 @@
-<h1>Public::Users#game</h1>
-<p>Find me in app/views/public/users/game.html.erb</p>
+<div class="row">
+	<h3>ユーザー検索 “<%= @game.title %>” を遊んでいるユーザー</h3>
+	<% if @users.present? %>
+		<%= render partial: "public/users/table", locals: { users: @users } %>
+	<% else %>
+		<h4>　遊んでいるユーザーはいません。</h4>
+	<% end %>
+</div>

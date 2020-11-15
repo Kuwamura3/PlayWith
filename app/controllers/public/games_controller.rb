@@ -9,6 +9,20 @@ class Public::GamesController < ApplicationController
   end
 
   def search
+    @word = params[:search_content]
+    if params[:search_content]
+      if params[:search_model] == "1"
+        if user_signed_in?
+          @users_games = current_user.users_games
+        end
+        @contents = Game.where("title LIKE ?", "%#{params[:search_content]}%").page(params[:page]).per(PER)
+        # render :search
+      elsif params[:search_model] == "2"
+        @users_games = UsersGame.all
+        @contents = User.where("name LIKE ?", "%#{params[:search_content]}%").page(params[:page]).per(PER)
+        render template: "public/users/search"
+      end
+    end
   end
 
   def index

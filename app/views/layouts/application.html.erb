@@ -45,9 +45,9 @@
 
 <!--検索フォーム、形のみ-->
 						<div class="search-form">
-							<%= form_with(url: games_search_path, method: :get) do |f| %>
-								<%= f.text_field "search[content]" %>
-								<%= f.select :data, {"Games":1, "Users":2}, {class: "form-control", required: true} %>
+							<%= form_with(url: games_search_path, method: :get, local: true) do |f| %>
+								<%= f.text_field :search_content %>
+								<%= f.select :search_model, {"Games":1, "Users":2}, {class: "form-control", required: true} %>
 								<%= f.submit "検索" %>
 							<% end %>
 						</div>
