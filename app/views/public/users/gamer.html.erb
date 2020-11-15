@@ -1,5 +1,8 @@
 <div class="row">
-	<h3>ユーザー検索 “<%= @game.title %>” を遊んでいる</h3>
-
-	<%= render partial: "public/users/table", locals: { users: @users } %>
+	<h3>ユーザー検索 “<%= @game.title %>” を遊んでいるユーザー</h3>
+	<% if @users.present? %>
+		<%= render partial: "public/users/table", locals: { users: @users } %>
+	<% else %>
+		<h4>　遊んでいるユーザーはいません。</h4>
+	<% end %>
 </div>

@@ -1,5 +1,8 @@
 <div class="row">
 	<h3>ゲーム一覧</h3>
-
-	<%= render partial: "public/games/table", locals: { games: @games } %>
+	<% if @games.present? %>
+		<%= render partial: "public/games/table", locals: { games: @games } %>
+	<% else %>
+		<h4>　ゲームはありません。</h4>
+	<% end %>
 </div>

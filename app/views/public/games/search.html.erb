@@ -1,5 +1,8 @@
 <div class="row">
 	<h3>ゲーム “<%= @word %>” を含む</h3>
-
-	<%= render partial: "public/games/table", locals: { games: @contents } %>
+	<% if @contents.present? %>
+		<%= render partial: "public/games/table", locals: { games: @contents } %>
+	<% else %>
+		<h4>　ゲームはありません。</h4>
+	<% end %>
 </div>
