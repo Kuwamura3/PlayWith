@@ -1,7 +1,12 @@
 <div class="row">
 	<table class="table table-bordered col-md-12">
 		<tr>
-			<th class="table info">通知欄</th>
+			<th class="table info">
+				<span>通知欄</span>
+				<% if notifications.present? %>
+					<%= link_to "全通知を削除", notifications_path, method: :delete,  class: "btn btn-xs btn-danger pull-right" %>
+				<% end %>
+			</th>
 		</tr>
 		<% if notifications.present? %>
 			<% notifications.each do |notification| %>

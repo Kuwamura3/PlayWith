@@ -1,6 +1,10 @@
 class Public::NotificationsController < ApplicationController
 
 	def destroy_all
+		@notifications = current_user.notifications
+		if @notifications.destroy_all
+			redirect_to user_path(current_user)
+		end
 	end
 
 	def create
