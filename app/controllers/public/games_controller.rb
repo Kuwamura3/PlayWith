@@ -34,10 +34,10 @@ class Public::GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     if @game.save
-      #notice: "ゲームを新規登録しました"
+      flash[:notice] = "ゲームを新規登録しました"
       redirect_to games_path
     else
-      #alert: "ゲームのタイトルを入力して下さい"
+      flash.now[:alert] = "ゲームのタイトルを入力して下さい"
       render :new
     end
   end

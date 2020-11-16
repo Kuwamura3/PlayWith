@@ -1,4 +1,6 @@
 <div class="row">
+	<%= render partial: "layouts/error_messages" %>
+
 	<h3>Top</h3>
 
 	<div class="col-md-12">
@@ -36,6 +38,6 @@
 					</td>
 				<% end %>
 			</table>
-		<p class="text-right"><%= link_to "もっと見る", games_path %></p>
+		<p class="text-right"><%= link_to "もっと見る", games_path, class:"btn btn-default btn-md" %></p>
 	</div>
 </div>
