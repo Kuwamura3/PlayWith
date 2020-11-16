@@ -18,6 +18,7 @@ class Public::RelationshipsController < ApplicationController
 			@notification.sender_id = current_user.id
 			@notification.kind = "フォロー"
 			@notification.save
+			# @user.create_notification_by(current_user)
 
 			if path[:action] == "show"
 				redirect_to user_path(@user)
