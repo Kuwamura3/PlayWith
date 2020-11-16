@@ -16,6 +16,7 @@ class Public::RelationshipsController < ApplicationController
 			@notification = Notification.new
 			@notification.user_id = params[:follow_id]
 			@notification.sender_id = current_user.id
+			@notification.game_id = "1"
 			@notification.kind = "フォロー"
 			@notification.save
 			# @user.create_notification_by(current_user)

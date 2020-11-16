@@ -161,18 +161,20 @@
 		</div>
 	</div>
 
-	<div class="col-md-offset-1 col-md-3">
-		<% if @user == current_user %>
-			<div class="row post-form">
-				<%= form_with(url: posts_path, method: :post, class: "form-horizontal", local: true) do |f| %>
-					<%= f.hidden_field :user_id, value: @user.id %>
-					<%= f.collection_select(:game_id, @users_games, :id, :title) %></br>
-					<%= f.select :kind, {"を新しく始めました":"新規", "で遊びたい":"遊びたい"}, {class: "form-control", required: true} %>
-					<%= f.submit "投稿", class: "btn btn-info" %>
-				<% end %>
-			</div>
+	<div class="col-md-4">
+		<div class="col-md-offset-1 col-md-11">
+			<% if @user == current_user %>
+				<div class="row post-form">
+					<%= form_with(url: notifications_path, method: :post, class: "form-horizontal", local: true) do |f| %>
+						<%= f.hidden_field :sender_id, value: @user.id %>
+						<%= f.collection_select(:game_id, @users_games, :id, :title) %></br>
+						<%= f.select :kind, {"を新しく始めました":"新規投稿", "で遊びたい":"希望投稿"}, {class: "form-control", required: true} %>
+						<%= f.submit "投稿", class: "btn btn-info" %>
+					<% end %>
+				</div>
 
-			<%= render partial: "public/notifications/index", locals: { notifications: @notifications } %>
-		<% end %>
+				<%= render partial: "public/notifications/index", locals: { notifications: @notifications } %>
+			<% end %>
+		</div>
 	</div>
 </div>
