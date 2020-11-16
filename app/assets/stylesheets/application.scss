@@ -18,14 +18,19 @@
 @import "bootstrap";
 
 .table-noborder {
-  border-top: 0px !important;
-  border-bottom: 0px !important;
+	border-top: 0px !important;
+	border-bottom: 0px !important;
 }
 
 .glyphicon-plus-sign {
-  color: blue;
+	color: blue;
 }
 
 .glyphicon-remove-sign {
-  color: red;
+	color: red;
 }
+
+.post-form {
+	margin: 30px 0;
+}
+	

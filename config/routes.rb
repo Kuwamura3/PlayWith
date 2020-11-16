@@ -32,10 +32,6 @@ Rails.application.routes.draw do
 	end
 
 	scope module: :public do
-		resources :posts, only: [:create]
-	end
-
-	scope module: :public do
 		delete 'notifications' => 'notifications#destroy_all'
 		resources :notifications, only: [:create, :destroy]
 	end

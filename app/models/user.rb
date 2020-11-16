@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
 	has_many :users_comments
 	has_many :notifications
+	# has_many :senders, through: :notifications, source: :sender
 	has_many :users_games
 	has_many :playings, through: :users_games, source: :game
 	has_many :posts
