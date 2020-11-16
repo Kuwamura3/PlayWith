@@ -25,6 +25,11 @@ class Public::NotificationsController < ApplicationController
 	end
 
 	def destroy
+		@notification = Notification.find(params[:id])
+		if @notification.destroy
+			#サクセスメッセージ
+			redirect_to user_path(current_user)
+		end
 	end
 
 	private

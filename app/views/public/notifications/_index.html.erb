@@ -14,33 +14,33 @@
 								<%= image_tag "noimage.png", :size => "30x30" %>
 							<% end %>
 						</div>
+
 						<div class="col-md-11">
 							<% if notification.kind == "フォロー" %>
 
 								<p><%= @users.find(notification.sender_id).name %>さんにフォローされました</p>
-								<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
 
 							<% elsif notification.kind == "新規投稿" %>
 
 								<% if notification.sender_id == @user.id%>
 									<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %>を新しく始めました」</p>
-									<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
 								<% else %>
 									<p><%= notification.sender.name %>が<%= notification.game.title %>を新しく始めました</p>
-									<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
 								<% end %>
 
 								<% elsif notification.kind == "希望投稿" %>
 
 								<% if notification.sender_id == @user.id%>
 									<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %>で遊びたがっています」</p>
-									<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
 								<% else %>
 									<p><%= notification.sender.name %>が<%= notification.game.title %>を遊びたがっています</p>
-									<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
 								<% end %>
 
 							<% end %>
+						</div>
+						<div>
+							<%= link_to "", notification_path(notification), method: :delete,  class: "glyphicon glyphicon-remove-sign" %>
+							<span class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></span>
 						</div>
 					</td>
 				</tr>
