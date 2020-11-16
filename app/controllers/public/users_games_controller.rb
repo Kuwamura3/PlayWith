@@ -57,19 +57,12 @@ class Public::UsersGamesController < ApplicationController
 	def destroy
 		path = Rails.application.routes.recognize_path(request.referer)
 
-		# 編集画面からの場合idを受け取るので、一意に定まる
-		if path[:action] == "edit"
-			@users_game = UsersGame.find_by(game_id: params[:id])
-			if @users_game.destroy
-				flash.now[:alert] = "遊びたいゲームの登録を解除しました"
+		@users_game = current_user.users_games.find_by(game_id: params[:id])
+		if @users_game.destroy
+			flash[:notice] = "遊びたいゲームの登録を解除しました"
+			if path[:action] == "edit"
 				redirect_to edit_user_path(current_user)
-			end
-
-		# 一覧画面からの場合game_idを受け取るので、current_userのものを削除する
-		else
-			@users_game = current_user.users_games.find_by(game_id: params[:id])
-			if @users_game.destroy
-				flash.now[:alert] = "遊びたいゲームの登録を解除しました"
+			else
 				redirect_to games_path
 			end
 		end
