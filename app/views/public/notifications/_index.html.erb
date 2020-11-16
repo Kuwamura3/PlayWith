@@ -5,54 +5,45 @@
 		</tr>
 		<% if notifications.present? %>
 			<% notifications.each do |notification| %>
-				<% if notification.kind == "フォロー" %>
+				<tr>
+					<td class="table">
+						<div class="col-md-1", style="padding: 0;">
+							<% if notification.sender.image_id.present? %>
+								<%= attachment_image_tag notification.sender, :image, :size => "30x30" %>
+							<% else %>
+								<%= image_tag "noimage.png", :size => "30x30" %>
+							<% end %>
+						</div>
+						<div class="col-md-11">
+							<% if notification.kind == "フォロー" %>
 
-					<tr>
-						<td class="table">
-							<p><%= @users.find(notification.sender_id).name %>さんにフォローされました</p>
-							<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-						</td>
-					</tr>
+								<p><%= @users.find(notification.sender_id).name %>さんにフォローされました</p>
+								<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
 
-				<% elsif notification.kind == "新規投稿" %>
+							<% elsif notification.kind == "新規投稿" %>
 
-					<% if notification.sender_id == @user.id%>
-						<tr>
-							<td class="table">
-								<div class="col-md-offset-1 col-md-11">
+								<% if notification.sender_id == @user.id%>
 									<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %>を新しく始めました」</p>
 									<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-								</div>
-							</td>
-						</tr>
-					<% else %>
-						<tr>
-							<td class="table">
-								<p><%= notification.sender.name %>が<%= notification.game.title %>を新しく始めました</p>
-								<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-							</td>
-						</tr>
-					<% end %>
+								<% else %>
+									<p><%= notification.sender.name %>が<%= notification.game.title %>を新しく始めました</p>
+									<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+								<% end %>
 
-				<% elsif notification.kind == "希望投稿" %>
+								<% elsif notification.kind == "希望投稿" %>
 
-					<% if notification.sender_id == @user.id%>
-						<tr>
-							<td class="table">
-								<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %>で遊びたがっています」</p>
-								<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-							</td>
-						</tr>
-					<% else %>
-						<tr>
-							<td class="table">
-								<p><%= notification.sender.name %>が<%= notification.game.title %>を遊びたがっています</p>
-								<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-							</td>
-						</tr>
-					<% end %>
+								<% if notification.sender_id == @user.id%>
+									<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %>で遊びたがっています」</p>
+									<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+								<% else %>
+									<p><%= notification.sender.name %>が<%= notification.game.title %>を遊びたがっています</p>
+									<p class="text-right"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+								<% end %>
 
-				<% end %>
+							<% end %>
+						</div>
+					</td>
+				</tr>
 			<% end %>
 		<% else %>
 			<td class="table">
