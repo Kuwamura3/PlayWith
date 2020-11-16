@@ -161,12 +161,12 @@
 		</div>
 	</div>
 
-	<div class="col-md-4">
+	<div class="col-md-offset-1 col-md-3">
 		<% if @user == current_user %>
 			<div class="row post-form">
 				<%= form_with(url: posts_path, method: :post, class: "form-horizontal", local: true) do |f| %>
 					<%= f.hidden_field :user_id, value: @user.id %>
-					<%= f.collection_select(:game_id, @users_games, :id, :title) %>
+					<%= f.collection_select(:game_id, @users_games, :id, :title) %></br>
 					<%= f.select :kind, {"を新しく始めました":1, "で遊びたい":2}, {class: "form-control", required: true} %>
 					<%= f.submit "投稿", class: "btn btn-info" %>
 				<% end %>
