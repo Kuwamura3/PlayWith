@@ -32,8 +32,8 @@
 					<%= game.title %>
 				<% end %>
 			</td>
-			<td class="table", style="width: 25%;">
-				<%= game.users_games.count %>
+			<td id="games_counts_<%= game.id %>", class="table", style="width: 25%;">
+				<%= render partial: "public/users_games/count", locals: { game: game } %>
 			</td>
 
 			<% if user_signed_in? %>
