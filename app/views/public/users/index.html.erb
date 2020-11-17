@@ -1,4 +1,6 @@
 <div class="row">
+	<%= render partial: "layouts/error_messages" %>
+
 	<h3>ユーザー一覧</h3>
 	<% if @users.present? %>
 		<%= render partial: "public/users/table", locals: { users: @users } %>

@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+	before_action :authenticate_user!, only: [:edit]
 
 	def search
 	end
@@ -30,10 +31,10 @@ class Public::UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 		if @user.update(user_params)
-			# サクセスメッセージ
+			flash[:notice] = "プロフィールを更新しました"
 			redirect_to user_path(@user)
 		else
-			# エラーメッセージ
+			flash.now[:alert] = "プロフィールの更新に失敗しました"
 			@user = User.find(params[:id])
 			@users_games = current_user.playings.order(:game_id)
 			@games = Game.all

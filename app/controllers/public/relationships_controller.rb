@@ -1,4 +1,5 @@
 class Public::RelationshipsController < ApplicationController
+	before_action :authenticate_user!, only: [:index]
 
 	def index
 		@followings = current_user.followings
@@ -11,7 +12,7 @@ class Public::RelationshipsController < ApplicationController
 		@user = User.find(params[:follow_id])
 		following = current_user.follow(@user)
 		if following.save
-			flash[:success] = "ユーザーをフォローしました"
+			flash[:notice] = "ユーザーをフォローしました"
 			# 通知の作成
 			@notification = Notification.new
 			@notification.user_id = params[:follow_id]
@@ -19,7 +20,6 @@ class Public::RelationshipsController < ApplicationController
 			@notification.game_id = "1"
 			@notification.kind = "フォロー"
 			@notification.save
-			# @user.create_notification_by(current_user)
 
 			if path[:action] == "show"
 				# redirect_to user_path(@user)
@@ -40,7 +40,7 @@ class Public::RelationshipsController < ApplicationController
 		@user = User.find(params[:follow_id])
 		following = current_user.unfollow(@user)
 		if following.destroy
-			flash[:success] = "ユーザーをフォローを解除しました"
+			flash[:notice] = "ユーザーをフォロー解除しました"
 			if path[:action] == "show"
 				# redirect_to user_path(@user)
 			elsif path[:controller] == "public/relationships" #フォロー一覧からの場合

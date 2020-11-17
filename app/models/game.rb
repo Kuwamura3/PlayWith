@@ -1,6 +1,6 @@
 class Game < ApplicationRecord
 
-	validates :title, presence: true
+	validates :title, presence: true, length: { in: 2..30 }
 
 	has_many :users_games
 	has_many :notifications
