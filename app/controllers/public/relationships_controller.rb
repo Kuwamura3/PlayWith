@@ -22,11 +22,11 @@ class Public::RelationshipsController < ApplicationController
 			# @user.create_notification_by(current_user)
 
 			if path[:action] == "show"
-				redirect_to user_path(@user)
+				# redirect_to user_path(@user)
 			elsif path[:controller] == "public/relationships" #フォロー一覧からの場合
-				redirect_to relationships_path
+				# redirect_to relationships_path
 			else
-				redirect_to users_path
+				# redirect_to users_path
 			end
 		else
 			flash.now[:alert] = "ユーザーのフォローに失敗しました"
@@ -42,11 +42,11 @@ class Public::RelationshipsController < ApplicationController
 		if following.destroy
 			flash[:success] = "ユーザーをフォローを解除しました"
 			if path[:action] == "show"
-				redirect_to user_path(@user)
+				# redirect_to user_path(@user)
 			elsif path[:controller] == "public/relationships" #フォロー一覧からの場合
-				redirect_to relationships_path
+				# redirect_to relationships_path
 			else
-				redirect_to users_path
+				# redirect_to users_path
 			end
 		else
 			flash.now[:alert] = "ユーザーのフォロー解除に失敗しました"

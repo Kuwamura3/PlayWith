@@ -49,7 +49,9 @@ class Public::UsersGamesController < ApplicationController
 			@users_game.user_id = current_user.id
 			if @users_game.save
 				# サクセスメッセージ
-				redirect_to games_path
+				@game = Game.find(params[:game_id])
+				@users_games = current_user.users_games
+				# redirect_to games_path
 			end
 		end
 	end
@@ -70,7 +72,9 @@ class Public::UsersGamesController < ApplicationController
 			@users_game = current_user.users_games.find_by(game_id: params[:id])
 			if @users_game.destroy
 				# サクセスメッセージ
-				redirect_to games_path
+				@game = Game.find(params[:id])
+				@users_games = current_user.users_games
+				# redirect_to games_path
 			end
 		end
 	end
