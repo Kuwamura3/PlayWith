@@ -1,0 +1,17 @@
+<table class="table table-hover col-md-offset-1 col-md-11">
+	<% @users_comments.each do |comment| %>
+		<tr>
+			<td class="table-noborder", style="width: 20%;">
+				<%= link_to user_path(comment.user) do %>
+					<%= comment.user.name %>
+				<% end %>
+			</td>
+			<td class="table-noborder", style="width: 40%;">
+				<%= comment.text %>
+			</td>
+			<td class="table-noborder", style="width: 20%;">
+				<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+			</td>
+		</tr>
+	<% end %>
+</table>
