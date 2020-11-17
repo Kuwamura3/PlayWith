@@ -37,7 +37,7 @@
 			</td>
 
 			<% if user_signed_in? %>
-				<td class="table", style="width: 25%;">
+				<td id="games_buttons_<%= game.id %>", class="table", style="width: 25%;">
 					<%= render partial: "public/users_games/button", locals: { users_games: @users_games, game: game } %>
 				</td>
 			<% end %>
