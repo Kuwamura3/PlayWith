@@ -1,4 +1,5 @@
 class Public::RelationshipsController < ApplicationController
+	before_action :authenticate_user!, only: [:index]
 
 	def index
 		@followings = current_user.followings
