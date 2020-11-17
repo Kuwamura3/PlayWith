@@ -32,7 +32,7 @@
 			</td>
 
 			<% if user_signed_in? %>
-				<td class="table", style="width: 30%;">
+				<td id="follow_buttons_<%= user.id %>", class="table", style="width: 30%;">
 					<%= render partial: "public/relationships/button", locals: { user: user } %>
 				</td>
 			<% end %>
