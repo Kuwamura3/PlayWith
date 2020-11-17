@@ -4,7 +4,7 @@ class Public::NotificationsController < ApplicationController
 		@notifications = current_user.notifications
 		if @notifications.destroy_all
 			flash[:notice] = "全ての通知を削除しました"
-			redirect_to user_path(current_user)
+			# redirect_to user_path(current_user)
 		end
 	end
 
@@ -19,7 +19,10 @@ class Public::NotificationsController < ApplicationController
 				@notification.user_id = follower.id
 				@notification.save
 			end
-			redirect_to user_path(params[:sender_id])
+			@user = current_user
+			@users_games = @user.playings.order(:game_id)
+			@notifications = Notification.where(user_id: @user.id).order(id: "DESC")
+			# redirect_to user_path(params[:sender_id])
 		else
 			flash.now[:alert] = "投稿に失敗しました"
 			@user = User.find(params[:sender_id])
@@ -33,7 +36,10 @@ class Public::NotificationsController < ApplicationController
 		@notification = Notification.find(params[:id])
 		if @notification.destroy
 			flash[:notice] = "通知を削除しました"
-			redirect_to user_path(current_user)
+			@users = User.all
+			@user = current_user
+			@notifications = Notification.where(user_id: @user.id).order(id: "DESC")
+			# redirect_to user_path(current_user)
 		end
 	end
 

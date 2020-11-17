@@ -1,0 +1,2 @@
+$("#notifications_form").html("<%= j(render partial: "public/notifications/form", locals: { user: @user, users_games: @users_games }) %>");
+$("#notifications_list").html("<%= j(render partial: "public/notifications/index", locals: { notifications: @notifications }) %>");
