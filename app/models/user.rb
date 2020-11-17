@@ -4,7 +4,11 @@ class User < ApplicationRecord
 	devise :database_authenticatable, :registerable,
 				 :recoverable, :rememberable, :validatable, :authentication_keys => [:name]
 
-	validates :name, presence: true
+	validates :name, presence: true, length: { in: 2..20 }
+	validates :introduction, length: { maximum: 100 }
+	validates :twitter, length: { maximum: 75 }
+	validates :discord_name, length: { maximum: 32 }
+	# validates :discord_number, length: { is: 4 }, numericality: { only_integer: true }
 
 	has_many :relationships
 	has_many :followings, through: :relationships, source: :follow
