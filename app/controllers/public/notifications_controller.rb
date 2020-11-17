@@ -3,7 +3,7 @@ class Public::NotificationsController < ApplicationController
 	def destroy_all
 		@notifications = current_user.notifications
 		if @notifications.destroy_all
-			redirect_to user_path(current_user)
+			# redirect_to user_path(current_user)
 		end
 	end
 
@@ -18,7 +18,10 @@ class Public::NotificationsController < ApplicationController
 				@notification.user_id = follower.id
 				@notification.save
 			end
-			redirect_to user_path(params[:sender_id])
+			@user = current_user
+			@users_games = @user.playings.order(:game_id)
+			@notifications = Notification.where(user_id: @user.id).order(id: "DESC")
+			# redirect_to user_path(params[:sender_id])
 		else
 			# エラーメッセージ
 			@user = User.find(params[:sender_id])
@@ -32,7 +35,10 @@ class Public::NotificationsController < ApplicationController
 		@notification = Notification.find(params[:id])
 		if @notification.destroy
 			#サクセスメッセージ
-			redirect_to user_path(current_user)
+			@users = User.all
+			@user = current_user
+			@notifications = Notification.where(user_id: @user.id).order(id: "DESC")
+			# redirect_to user_path(current_user)
 		end
 	end
 
