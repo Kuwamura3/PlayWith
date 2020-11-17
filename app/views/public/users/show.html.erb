@@ -129,18 +129,7 @@
 			<% end %>
 		</div>
 
-		<div class="row", style="padding-top: 20px;">
-			<span class="col-md-2">コメント</span>
-			<% if user_signed_in? %>
-				<%= form_with(url: users_comments_path, method: :post, class: "form-horizontal", local: true) do |f| %>
-					<%= f.hidden_field :id, value: @user.id %>
-					<%= f.text_area :text, rows:"2", class: "col-md-6 comment" %>
-					<%= f.submit "送信", class: "btn btn-info col-md-offset-1 col-md-2" %>
-				<% end %>
-			<% end %>
-		</div>
-
-		<div class="row">
+		<div id="comment_list">
 			<%= render partial: "public/users_comments/list", locals: { users_comments: @users_comments } %>
 		</div>
 	</div>
