@@ -6,9 +6,9 @@ class User < ApplicationRecord
 
 	validates :name, presence: true, length: { in: 2..20 }
 	validates :introduction, length: { maximum: 100 }
-	validates :twitter, length: { maximum: 75 }
-	validates :discord_name, length: { maximum: 32 }
-	# validates :discord_number, length: { is: 4 }, numericality: { only_integer: true }
+	validates :twitter, length: { in:  2..75 }, allow_blank: true
+	validates :discord_name, length: { in: 2..32 }, allow_blank: true
+	validates :discord_number, length: { is: 4 }, numericality: { only_integer: true }, allow_blank: true
 
 	has_many :relationships
 	has_many :followings, through: :relationships, source: :follow
@@ -17,7 +17,6 @@ class User < ApplicationRecord
 
 	has_many :users_comments
 	has_many :notifications
-	# has_many :senders, through: :notifications, source: :sender
 	has_many :users_games
 	has_many :playings, through: :users_games, source: :game
 	has_many :posts
