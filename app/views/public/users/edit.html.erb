@@ -61,39 +61,8 @@
 
 <div class="row">
 	<h3>登録ゲーム編集</h3>
-	<div class="col-md-8">
-		<table class="table">
-			<% @users_games.each_slice(3) do |game1,game2,game3| %>
-				<tr>
-					<% if game1.present? %>
-						<td class="table table-noborder", style="width: 1%;">
-							<%= link_to "", users_game_path(game1), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
-						</td>
-						<td class="table table-noborder", style="width: 32%;">
-							<%= game1.title %>
-						</td>
-					<% end %>
-
-					<% if game2.present? %>
-						<td class="table table-noborder", style="width: 1%;">
-							<%= link_to "", users_game_path(game2), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
-						</td>
-						<td class="table table-noborder", style="width: 32%;">
-							<%= game2.title %>
-						</td>
-					<% end %>
-
-					<% if game3.present? %>
-						<td class="table table-noborder", style="width: 1%;">
-							<%= link_to "", users_game_path(game3), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
-						</td>
-						<td class="table table-noborder", style="width: 32%;">
-							<%= game3.title %>
-						</td>
-					<% end %>
-				</tr>
-			<% end %>
-		</table>
+	<div id="users_games_list", class="col-md-8">
+		<%= render partial: "public/users_games/list", locals: { users_games: @users_games} %>
 
 		<%= form_with(url: users_games_path, method: :post, class: "form-horizontal", local: true) do |f| %>
 			<%= f.hidden_field :user_id, value: current_user.id %>
