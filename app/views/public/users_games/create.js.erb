@@ -1,2 +1,3 @@
 $("#games_buttons_<%= @game.id %>").html("<%= j(render partial: "public/users_games/button", locals: { users_games: @users_games, game: @game }) %>");
 $("#games_counts_<%= @game.id %>").html("<%= j(render partial: "public/users_games/count", locals: { game: @game }) %>");
+$("#error_messages").html("<%= j(render partial: "layouts/error_messages") %>");

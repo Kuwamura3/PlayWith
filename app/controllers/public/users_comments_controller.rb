@@ -8,7 +8,7 @@ class Public::UsersCommentsController < ApplicationController
 		@users_comment.user_id = current_user.id
 		@users_comment.commented_id = params[:id]
 		if @users_comment.save
-			flash[:notice] = "コメントを投稿しました"
+			flash.now[:notice] = "コメントを投稿しました"
 			# redirect_to user_path(params[:id])
 		else
 			flash.now[:alert] = "コメントの内容を入力して下さい"
@@ -17,7 +17,7 @@ class Public::UsersCommentsController < ApplicationController
 			@users_games = current_user.playings.order(:game_id)
 			@users_comments = UsersComment.where(commented_id: params[:id]).order(id: "DESC") #降順
 			@notifications = Notification.where(user_id: @user.id).order(id: "DESC")
-			render template: "public/users/show"
+			# render template: "public/users/show"
 		end
 	end
 

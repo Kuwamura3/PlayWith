@@ -48,7 +48,7 @@ class Public::UsersGamesController < ApplicationController
 			@users_game.game_id = params[:game_id]
 			@users_game.user_id = current_user.id
 			if @users_game.save
-				flash[:notice] = "遊びたいゲームを登録しました"
+				flash.now[:notice] = "遊びたいゲームを登録しました"
 				@game = Game.find(params[:game_id])
 				@users_games = current_user.users_games
 				# redirect_to games_path
@@ -61,10 +61,11 @@ class Public::UsersGamesController < ApplicationController
 
 		@users_game = current_user.users_games.find_by(game_id: params[:id])
 		if @users_game.destroy
-			flash[:notice] = "遊びたいゲームの登録を解除しました"
 			if path[:action] == "edit"
+				flash[:notice] = "遊びたいゲームの登録を解除しました"
 				redirect_to edit_user_path(current_user)
 			else
+				flash.now[:notice] = "遊びたいゲームの登録を解除しました"
 				@game = Game.find(params[:id])
 				@users_games = current_user.users_games
 				# redirect_to games_path

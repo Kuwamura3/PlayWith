@@ -3,7 +3,7 @@ class Public::NotificationsController < ApplicationController
 	def destroy_all
 		@notifications = current_user.notifications
 		if @notifications.destroy_all
-			flash[:notice] = "全ての通知を削除しました"
+			flash.now[:notice] = "全ての通知を削除しました"
 			# redirect_to user_path(current_user)
 		end
 	end
@@ -12,7 +12,7 @@ class Public::NotificationsController < ApplicationController
 		@notification = Notification.new(notification_params)
 		@notification.user_id = current_user.id
 		if @notification.save
-			flash[:notice] = "フォロワーへの投稿を作成しました"
+			flash.now[:notice] = "フォロワーへの投稿を作成しました"
 			@followers = current_user.followers
 			@followers.each do |follower|
 				@notification = Notification.new(notification_params)
@@ -35,7 +35,7 @@ class Public::NotificationsController < ApplicationController
 	def destroy
 		@notification = Notification.find(params[:id])
 		if @notification.destroy
-			flash[:notice] = "通知を削除しました"
+			flash.now[:notice] = "通知を削除しました"
 			@users = User.all
 			@user = current_user
 			@notifications = Notification.where(user_id: @user.id).order(id: "DESC")
