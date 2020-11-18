@@ -1,3 +1,6 @@
+<% if @game.present? %>
+	<%= render "users/shared/error_messages", resource: @game %>
+<% end %>
 <div class="row">
 	<h3>ゲーム追加</h3>
 	<div class="form-group col-md-offset-1 col-md-11">
