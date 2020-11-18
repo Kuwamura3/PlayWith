@@ -9,15 +9,13 @@ class Public::NotificationsController < ApplicationController
 	end
 
 	def create
-		@notification = Notification.new(notification_params)
-		@notification.user_id = current_user.id
+		@notification = current_user.notifications.new(notification_params)
 		if @notification.save
 			flash.now[:notice] = "フォロワーへの投稿を作成しました"
 			@followers = current_user.followers
 			@followers.each do |follower|
-				@notification = Notification.new(notification_params)
-				@notification.user_id = follower.id
-				@notification.save
+				notification = follower.notifications.new(notification_params)
+				notification.save
 			end
 			@user = current_user
 			@users_games = @user.playings.order(:game_id)
