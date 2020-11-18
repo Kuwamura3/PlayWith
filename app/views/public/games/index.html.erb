@@ -1,6 +1,4 @@
 <div class="row">
-	<%= render partial: "layouts/error_messages" %>
-
 	<h3>ゲーム一覧</h3>
 	<% if @games.present? %>
 		<%= render partial: "public/games/table", locals: { games: @games } %>

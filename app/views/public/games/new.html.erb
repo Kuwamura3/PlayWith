@@ -1,6 +1,4 @@
 <div class="row">
-	<%= render partial: "layouts/error_messages" %>
-
 	<h3>ゲーム追加</h3>
 	<div class="form-group col-md-offset-1 col-md-11">
 		<%= form_with(model:@game, url: games_path, method: :post, class: "form-horizontal", local: true) do |f| %>
