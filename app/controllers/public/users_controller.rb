@@ -34,8 +34,6 @@ class Public::UsersController < ApplicationController
 			flash[:notice] = "プロフィールを更新しました"
 			redirect_to user_path(@user)
 		else
-			flash.now[:alert] = "プロフィールの更新に失敗しました"
-			@user = User.find(params[:id])
 			@users_games = current_user.playings.order(:game_id)
 			@games = Game.all
 			render "edit"

@@ -1,1 +1,2 @@
 $("#comment_list").html("<%= j(render partial: "public/users_comments/list", locals: { users_comments: @users_comments }) %>");
+$("#error_messages").html("<%= j(render partial: "layouts/error_messages") %>");

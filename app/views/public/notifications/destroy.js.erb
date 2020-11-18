@@ -1,1 +1,2 @@
 $("#notifications_list").html("<%= j(render partial: "public/notifications/index", locals: { notifications: @notifications }) %>");
+$("#error_messages").html("<%= j(render partial: "layouts/error_messages") %>");
