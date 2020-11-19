@@ -17,6 +17,50 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.navbar-inverse .navbar-nav > li > a {
+	color: #5090c0;
+	font-size: 20px;
+	margin-top: 15px;
+}
+
+.search-form {
+	margin-top: 65px;
+	margin-right: 15px;
+}
+
+#search_model {
+	font-size: 16px;
+	width: 100px;
+}
+
+#search_content {
+	height: 34px;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #696969;
+    border-color: #494949;
+}
+
+.notice {
+	background-color: #7fffd4;
+	color: green;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #6fefc4;
+    border-radius: 4px;
+}
+
+.alert {
+	background-color: red;
+	color: red;
+}
+
+#error_explanation {
+	color: red;
+}
+
 .table-noborder {
 	border-top: 0px !important;
 	border-bottom: 0px !important;
@@ -32,20 +76,4 @@
 
 .post-form {
 	margin: 30px 0;
-}
-
-.notice {
-	color: green;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-}
-
-.alert {
-	color: red;
-}
-
-#error_explanation {
-	color: red;
 }

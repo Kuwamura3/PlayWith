@@ -43,12 +43,11 @@
 							<li><%= link_to "Signup", new_user_registration_path %></li>
 						<% end %>
 
-<!--検索フォーム、形のみ-->
-						<div class="search-form">
-							<%= form_with(url: games_search_path, method: :get, local: true) do |f| %>
-								<%= f.text_field :search_content %>
-								<%= f.select :search_model, {"Games":1, "Users":2}, {class: "form-control", required: true} %>
-								<%= f.submit "検索" %>
+						<div class="search-form dropdown text-right">
+							<%= form_with(url: games_search_path, method: :get, class: "form-inline", local: true) do |f| %>
+								<%= f.select :search_model, {"Games":1, "Users":2}, {}, {class: "form-control"} %>
+								<%= f.text_field :search_content%>
+								<%= f.submit "検索", class: "btn btn-md btn-secondary" %>
 							<% end %>
 						</div>
 					</ul>
