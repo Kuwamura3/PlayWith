@@ -21,8 +21,8 @@
 
 				<% if user_signed_in? %>
 					<nav class="nav navbar-nav navbar-left">
-						<li>
-							<h4>Welcome,<%= current_user.name %>!</h4>
+						<li class="header-name">
+							<p>Welcome,<%= current_user.name %>!</p>
 						</li>
 					</nav>
 				<% end %>
