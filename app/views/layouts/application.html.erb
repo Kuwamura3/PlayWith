@@ -43,10 +43,10 @@
 							<li><%= link_to "Signup", new_user_registration_path %></li>
 						<% end %>
 
-						<div class="search-form dropdown text-right">
+						<div class="form-group search-form dropdown text-right">
 							<%= form_with(url: games_search_path, method: :get, class: "form-inline", local: true) do |f| %>
 								<%= f.select :search_model, {"Games":1, "Users":2}, {}, {class: "form-control"} %>
-								<%= f.text_field :search_content%>
+								<%= f.text_field :search_content, class: "form-control" %>
 								<%= f.submit "検索", class: "btn btn-md btn-secondary" %>
 							<% end %>
 						</div>

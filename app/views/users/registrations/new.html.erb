@@ -1,29 +1,45 @@
 <%= render "users/shared/error_messages", resource: resource %>
-<h2>新規登録</h2>
+<div class="row">
+	<h3>新規登録</h3>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+	<div class="col-md-offset-3 col-md-6 form-group">
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+			<table class="table">
+				<tr>
+					<th class="table table-noborder", style="width: 30%;">
+						<%= f.label :name %>
+					</th>
+					<td class="table table-noborder">
+						<%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+					</td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 30%;">
+						<%= f.label :password %>(6文字以上)
+					</th>
+					<td class="table table-noborder">
+						<%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+					</td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 30%;">
+						<%= f.label :password_confirmation %>
+					</th>
+					<td class="table table-noborder">
+						<%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+					</td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 30%;"></th>
+					<td class="table table-noborder">
+						<%= f.submit "新規登録", class: "btn btn-md btn-success", style: "width: 130px;" %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+	</div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+	<div class="col-md-offset-9 col-md-3">
+		<%= render "users/shared/links" %>
+	</div>
+</div>
