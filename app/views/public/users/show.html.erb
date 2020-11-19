@@ -130,7 +130,9 @@
 		<div class="col-md-offset-1 col-md-11">
 			<% if @user == current_user %>
 				<div id="notifications_form", class="row post-form">
-					<%= render partial: "public/notifications/form", locals: { user: @user, users_games: @users_games } %>
+					<% if @users_games.present? %>
+						<%= render partial: "public/notifications/form", locals: { user: @user, users_games: @users_games } %>
+					<% end %>
 				</div>
 
 				<div id="notifications_list", class="row">
