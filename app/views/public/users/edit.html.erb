@@ -3,7 +3,7 @@
 	<h3>プロフィール編集</h3>
 
 	<div class="col-md-8">
-		<%= form_with model:@user, local:true do |f| %>
+		<%= form_with model:@user, class: "form-inline", local:true do |f| %>
 			<table class="table">
 				<tr>
 					<th class="table table-noborder", style="width: 25%;">プロフィール画像</th>
@@ -11,11 +11,11 @@
 				</tr>
 				<tr>
 					<th class="table table-noborder", style="width: 25%;">ハンドルネーム</th>
-					<td class="table table-noborder"><%= f.text_field :name %></td>
+					<td class="table table-noborder"><%= f.text_field :name, class: "form-control" %></td>
 				</tr>
 				<tr>
 					<th class="table table-noborder", style="width: 25%;">一言</th>
-					<td class="table table-noborder"><%= f.text_area :introduction, :size=>"50px" %></td>
+					<td class="table table-noborder"><%= f.text_area :introduction, class: "form-control", :size => "50"  %></td>
 				</tr>
 				<tr>
 					<th class="table table-noborder", style="width: 25%;">ボイスチャット可否</th>
@@ -44,11 +44,11 @@
 				</tr>
 				<tr>
 					<th class="table table-noborder", style="width: 25%;">Twitter</th>
-					<td class="table table-noborder"><%= f.text_field :twitter %></td>
+					<td class="table table-noborder"><%= f.text_field :twitter, class: "form-control" %></td>
 				</tr>
 				<tr>
 					<th class="table table-noborder", style="width: 25%;">Discord</th>
-					<td class="table table-noborder"><%= f.text_field :discord_name, class: "form-inline" %> # <%= f.text_field :discord_number, class: "form-inline", :size=>"5px" %></td>
+					<td class="table table-noborder"><%= f.text_field :discord_name, class: "form-control" %> # <%= f.text_field :discord_number, class: "form-control" %></td>
 				</tr>
 				<tr>
 					<th class="table table-noborder", style="width: 25%;">
@@ -65,10 +65,10 @@
 	<div id="users_games_list", class="col-md-8">
 		<%= render partial: "public/users_games/list", locals: { users_games: @users_games} %>
 
-		<%= form_with(url: users_games_path, method: :post, class: "form-horizontal", local: true) do |f| %>
+		<%= form_with(url: users_games_path, method: :post, class: "form-inline", local: true) do |f| %>
 			<%= f.hidden_field :user_id, value: current_user.id %>
-			<%= f.collection_select(:game_id, @games, :id, :title, prompt: "ゲーム選択") %>
-			<%= f.submit "追加する", class: "btn btn-info" %>
+			<%= f.collection_select(:game_id, @games, :id, :title, { prompt: "ゲーム選択"}, { class: "form-control" }) %>
+			<%= f.submit "追加する", class: "btn btn-md btn-info" %>
 		<% end %>
 	</div>
 </div>
