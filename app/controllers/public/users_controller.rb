@@ -18,6 +18,10 @@ class Public::UsersController < ApplicationController
 		@users_games = current_user.playings.order(:game_id)
 		#↑ユーザーの遊びたいゲームを、ゲームid順に取得
 		@games = Game.all
+		unless current_user == @user
+			flash[:alert] = "他のユーザー情報は編集できません"
+			redirect_to edit_user_path(current_user)
+		end
 	end
 
 	def show

@@ -1,4 +1,5 @@
 class Public::GamesController < ApplicationController
+	before_action :authenticate_user!, only: [:new]
 
   def top
     @games = Game.joins(:users_games).group(:id).order("count(users_games.user_id)DESC").limit(5)
