@@ -1,6 +1,6 @@
-<%= form_with(url: notifications_path, method: :post, class: "form-horizontal", remote: true) do |f| %>
+<%= form_with(url: notifications_path, method: :post, class: "form-inline", remote: true) do |f| %>
 	<%= f.hidden_field :sender_id, value: user.id %>
-	<%= f.collection_select(:game_id, users_games, :id, :title) %></br>
-	<%= f.select :kind, {"を新しく始めました":"新規投稿", "で遊びたい":"希望投稿"}, {class: "form-control", required: true} %>
-	<%= f.submit "投稿", class: "btn btn-info" %>
+	<%= f.collection_select(:game_id, users_games, :id, :title, {}, {class: "form-control"}) %>
+	<%= f.select :kind, {"を新しく始めました":"新規投稿", "で遊びたい":"希望投稿"}, {}, {class: "form-control"} %>
+	<%= f.submit "投稿", class: "btn btn-md btn-info" %>
 <% end %>
