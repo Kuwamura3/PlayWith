@@ -2,7 +2,7 @@
 	<h4 class="col-md-2">コメント</h4>
 	<% if user_signed_in? %>
 		<%= form_with(url: users_comments_path, method: :post, class: "form-inline", remote: true) do |f| %>
-			<%= f.hidden_field :id, value: @user.id %>
+			<%= f.hidden_field :commented_id, value: @user.id %>
 			<%= f.text_area :text, rows:"2", class: "col-md-8 comment form-control", :size => "50" %>
 			<%= f.submit "送信", class: "btn btn-md btn-info col-md-2" %>
 		<% end %>
