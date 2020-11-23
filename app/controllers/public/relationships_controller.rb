@@ -2,6 +2,7 @@ class Public::RelationshipsController < ApplicationController
 	before_action :authenticate_user!, only: [:index]
 
 	def index
+		@user = current_user
 		@followings = current_user.followings
 		@followers = current_user.followers
 	end
