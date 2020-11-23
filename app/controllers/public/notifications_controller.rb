@@ -18,6 +18,7 @@ class Public::NotificationsController < ApplicationController
 				notification.save
 			end
 			@user = current_user
+			@users = User.all
 			@users_games = @user.playings.order(:game_id)
 			@notifications = Notification.where(user_id: @user.id).order(id: "DESC")
 			# redirect_to user_path(params[:sender_id])
