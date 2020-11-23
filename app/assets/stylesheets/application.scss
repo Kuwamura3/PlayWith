@@ -17,15 +17,75 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.navbar-inverse .navbar-nav > li > a {
+	color: #5090c0;
+	font-size: 20px;
+	margin-top: 15px;
+}
+
+.header-name {
+	color: white;
+	font-size: 24px;
+	margin-top: 65px;
+	margin-left: 85px;
+}
+
+.search-form {
+	margin-top: 65px;
+	margin-right: 15px;
+}
+
+#search_model {
+	font-size: 16px;
+	width: 100px;
+}
+
+#search_content {
+	height: 34px;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #696969;
+    border-color: #494949;
+}
+
+.notice {
+	background-color: #7fffd4;
+	color: green;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #6fefc4;
+    border-radius: 4px;
+}
+
+.alert {
+	background-color: #ffc0cb;
+	color: red;
+	border-color: #ffb6c1;
+}
+
+#error_explanation {
+	color: red;
+}
+
 .table-noborder {
-  border-top: 0px !important;
-  border-bottom: 0px !important;
+	border-top: 0px !important;
+	border-bottom: 0px !important;
 }
 
 .glyphicon-plus-sign {
-  color: blue;
+	color: blue;
 }
 
 .glyphicon-remove-sign {
-  color: red;
+	color: red;
+}
+
+.post-form {
+	margin: 30px 0;
+}
+
+.comment {
+	margin-right: 30px;
 }

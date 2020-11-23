@@ -1,4 +1,5 @@
 class Public::GamesController < ApplicationController
+	before_action :authenticate_user!, only: [:new]
 
   def top
     @games = Game.joins(:users_games).group(:id).order("count(users_games.user_id)DESC").limit(5)
@@ -9,6 +10,19 @@ class Public::GamesController < ApplicationController
   end
 
   def search
+    @word = params[:search_content]
+    if params[:search_content]
+      if params[:search_model] == "1" #検索欄でGamesを選択
+        if user_signed_in?
+          @users_games = current_user.users_games
+        end
+        @contents = Game.where("title LIKE ?", "%#{params[:search_content]}%").page(params[:page]).per(PER)
+        # render :search
+      elsif params[:search_model] == "2" #検索欄でUsersを選択
+        @contents = User.where("name LIKE ?", "%#{params[:search_content]}%").page(params[:page]).per(PER)
+        render template: "public/users/search"
+      end
+    end
   end
 
   def index
@@ -20,11 +34,15 @@ class Public::GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-    if @game.save
-      #notice: "ゲームを新規登録しました"
-      redirect_to games_path
+    unless Game.find_by(title: @game.title)
+      if @game.save
+        flash[:notice] = "ゲームを新規登録しました"
+        redirect_to games_path
+      else
+        render :new
+      end
     else
-      #alert: "ゲームのタイトルを入力して下さい"
+      flash.now[:alert] = "そのゲームは登録済です"
       render :new
     end
   end

@@ -1,0 +1,42 @@
+<table class="table table-bordered">
+	<tr>
+		<th class="table info", style="width: 10%;">
+		</th>
+		<th class="table info", style="width: 60%;">
+			ユーザー名
+		</th>
+
+		<% if user_signed_in? %>
+			<th class="table info", style="width: 30%;">
+				フォロー／解除
+			</th>
+		<% end %>
+
+	</tr>
+
+	<% users.each do |user| %>
+		<tr>
+			<td class="table", style="width: 10%;">
+
+				<% if user.image_id.present? %>
+					<%= attachment_image_tag user, :image, :size => "40x40" %>
+				<% else %>
+					<%= image_tag "noimage.png", :size => "40x40" %>
+				<% end %>
+
+			</td>
+			<td class="table", style="width: 60%;">
+				<%= link_to user_path(user) do %>
+					<%= user.name %>
+				<% end %>
+			</td>
+
+			<% if user_signed_in? %>
+				<td id="follow_buttons_<%= user.id %>", class="table", style="width: 30%;">
+					<%= render partial: "public/relationships/button", locals: { user: user } %>
+				</td>
+			<% end %>
+
+		</tr>
+	<% end %>
+</table>

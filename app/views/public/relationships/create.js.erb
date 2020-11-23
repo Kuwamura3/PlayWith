@@ -1,0 +1,2 @@
+$("#follow_buttons_<%= @user.id %>").html("<%= j(render partial: "public/relationships/button", locals: { user: @user }) %>");
+$("#error_messages").html("<%= j(render partial: "layouts/error_messages") %>");

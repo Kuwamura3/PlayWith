@@ -1,37 +1,45 @@
 class Public::UsersController < ApplicationController
+	before_action :authenticate_user!, only: [:edit]
 
 	def search
 	end
 
 	def gamer
+		@game = Game.find_by(id: params[:game_id])
+		@users = @game.players.page(params[:page]).per(PER)
 	end
 
 	def index
 		@users = User.page(params[:page]).per(PER)
-		@users_games = UsersGame.all
 	end
 
 	def edit
 		@user = User.find(params[:id])
-		@users_games = UsersGame.where(user_id: current_user.id).order(:game_id)
+		@users_games = current_user.playings.order(:game_id)
 		#↑ユーザーの遊びたいゲームを、ゲームid順に取得
 		@games = Game.all
+		unless current_user == @user
+			flash[:alert] = "他のユーザー情報は編集できません"
+			redirect_to edit_user_path(current_user)
+		end
 	end
 
 	def show
+		@users = User.all
 		@user = User.find(params[:id])
-		@users_games = UsersGame.where(user_id: params[:id]).order(:game_id)
-		#↑ユーザーの遊びたいゲームを、ゲームid順に取得
+		@users_games = @user.playings.order(:game_id)
 		@users_comments = UsersComment.where(commented_id: params[:id]).order(id: "DESC") #降順
+		@notifications = Notification.where(user_id: @user.id).order(id: "DESC")
 	end
 
 	def update
 		@user = User.find(params[:id])
 		if @user.update(user_params)
-			# サクセスメッセージ
+			flash[:notice] = "プロフィールを更新しました"
 			redirect_to user_path(@user)
 		else
-			# エラーメッセージ
+			@users_games = current_user.playings.order(:game_id)
+			@games = Game.all
 			render "edit"
 		end
 	end
