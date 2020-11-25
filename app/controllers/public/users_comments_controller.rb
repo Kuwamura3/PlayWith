@@ -9,7 +9,7 @@ class Public::UsersCommentsController < ApplicationController
 			flash.now[:notice] = "コメントを投稿しました"
 			# redirect_to user_path(params[:id])
 		else
-			flash.now[:alert] = "コメントの内容を入力して下さい"
+			# flash.now[:alert] = "コメントの内容を入力して下さい"
 			# @users = User.all
 			# @users_games = current_user.playings.order(:game_id)
 			# @notifications = Notification.where(user_id: @user.id).order(id: "DESC")
