@@ -12,18 +12,22 @@ class Public::UsersGamesController < ApplicationController
 					flash[:notice] = "遊びたいゲームを登録しました"
 					redirect_to edit_user_path(current_user)
 				else
-					flash.now[:alert] = "そのゲームは登録済みです"
-					@user = current_user
-					@users_games = current_user.playings.order(:game_id)
-					@games = Game.all
-					render template: "public/users/edit"
+					# flash.now[:alert] = "そのゲームは登録済みです"
+					# @user = current_user
+					# @users_games = current_user.playings.order(:game_id)
+					# @games = Game.all
+					# render template: "public/users/edit"
+					flash[:alert] = "そのゲームは登録済みです"
+					redirect_to edit_user_path(current_user)
 				end
 			else
-				flash.now[:alert] = "ゲームを選択してください"
-				@user = current_user
-				@users_games = current_user.playings.order(:game_id)
-				@games = Game.all
-				render template: "public/users/edit"
+				# flash.now[:alert] = "ゲームを選択してください"
+				# @user = current_user
+				# @users_games = current_user.playings.order(:game_id)
+				# @games = Game.all
+				# render template: "public/users/edit"
+				flash[:alert] = "ゲームを選択してください"
+				redirect_to edit_user_path(current_user)
 			end
 
 		# 一覧画面からの場合、eachで取得できるgame_idを受け取る
