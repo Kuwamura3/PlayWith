@@ -38,9 +38,14 @@ class Public::UsersController < ApplicationController
 			flash[:notice] = "プロフィールを更新しました"
 			redirect_to user_path(@user)
 		else
-			@users_games = current_user.playings.order(:game_id)
-			@games = Game.all
-			render "edit"
+			# @users_games = current_user.playings.order(:game_id)
+			# @games = Game.all
+			# render "edit"
+			@users = User.all
+			@users_games = @user.playings.order(:game_id)
+			@users_comments = UsersComment.where(commented_id: params[:id]).order(id: "DESC") #降順
+			@notifications = Notification.where(user_id: @user.id).order(id: "DESC")
+			render "show"
 		end
 	end
 	
