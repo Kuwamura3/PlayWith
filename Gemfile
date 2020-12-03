@@ -72,7 +72,7 @@ gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'rubocop', require:false
 gem 'rubocop-rails', require:false
-gem "dotenv-rails"
-group :production do
-  gem "mysql2"
-end
+# gem "dotenv-rails"
+# group :production do
+#   gem "mysql2"
+# end
