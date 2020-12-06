@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :admins, controllers: {
+	namespace :admin do
+		resources :games, only: [:index, :create, :new]
+	end
+
+	namespace :admin do
+		resources :users, only: [:index, :edit, :show, :update]
+	end
+
+	devise_for :admins, controllers: {
 		sessions:      'users/sessions',
 		passwords:     'users/passwords',
 	}

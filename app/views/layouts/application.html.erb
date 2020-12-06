@@ -36,9 +36,8 @@
 							<li><%= link_to "Users", users_path %></li>
 							<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
 						<% elsif admin_signed_in? %>
-							<li><%= link_to "About", about_path %></li>
-							<li><%= link_to "Games", games_path %></li>
-							<li><%= link_to "Users", users_path %></li>
+							<li><%= link_to "Games", admin_games_path %></li>
+							<li><%= link_to "Users", admin_users_path %></li>
 							<li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
 						<% else %>
 							<li><%= link_to "About", about_path %></li>
@@ -49,10 +48,12 @@
 						<% end %>
 
 						<div class="form-group search-form dropdown text-right">
-							<%= form_with(url: games_search_path, method: :get, class: "form-inline", local: true) do |f| %>
-								<%= f.select :search_model, {"Games":1, "Users":2}, {}, {class: "form-control"} %>
-								<%= f.text_field :search_content, class: "form-control" %>
-								<%= f.submit "検索", class: "btn btn-md btn-secondary" %>
+							<% unless admin_signed_in? %>
+								<%= form_with(url: games_search_path, method: :get, class: "form-inline", local: true) do |f| %>
+									<%= f.select :search_model, {"Games":1, "Users":2}, {}, {class: "form-control"} %>
+									<%= f.text_field :search_content, class: "form-control" %>
+									<%= f.submit "検索", class: "btn btn-md btn-secondary" %>
+								<% end %>
 							<% end %>
 						</div>
 					</ul>
