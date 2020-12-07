@@ -2,42 +2,56 @@
 	<h3>Top</h3>
 
 	<div class="col-md-12">
-		<h4>このサイトについて</h4>
-		<p>　「Play With」は、オンラインゲームを始めたいけど、一緒に遊ぶ仲間がいない、かといって野良は怖い、という方々が遊び仲間を探すためのサイトです。</p>
-		</br>
+		<% unless admin_signed_in? %> 
+			<h4>このサイトについて</h4>
+			<p>　「Play With」は、オンラインゲームを始めたいけど、一緒に遊ぶ仲間がいない、かといって野良は怖い、という方々が遊び仲間を探すためのサイトです。</p>
+			</br>
 
-		<h4>サイトマップ</h4>
-		<table class="table">
-			<tr>
-				<th class="table-noborder">About</th>
-				<td class="table-noborder">：このサイトの使い方</td>
-			</tr>
-			<tr>
-				<th class="table-noborder">Mypage</th>
-				<td class="table-noborder">：自分のプロフィールやフォローフォロワー、通知、コメントなど</td>
-			</tr>
-			<tr>
-				<th class="table-noborder">Games</th>
-				<td class="table-noborder">：みんなが遊んでいるゲームの一覧</td>
-			</tr>
-			<tr>
-				<th class="table-noborder">Users</th>
-				<td class="table-noborder">：このサイトを使っているユーザーの一覧</td>
-			</tr>
-		</table>
-
-		<h4>よく遊ばれているゲーム</h4>
+			<h4>サイトマップ</h4>
 			<table class="table">
-				<td class="table table-noborder", style="width: 5%;"></td>
-				<% @games.each do |game| %>
-					<td class="table table-noborder", style="font-size: 18px; width: 18%;">
-						<%= link_to users_gamer_path(game_id: game.id) do %>
-							<%= game.title %>
-						<% end %>
-					</td>
-				<% end %>
+				<tr>
+					<th class="table-noborder">About</th>
+					<td class="table-noborder">：このサイトの使い方</td>
+				</tr>
+				<tr>
+					<th class="table-noborder">Mypage</th>
+					<td class="table-noborder">：自分のプロフィールやフォローフォロワー、通知、コメントなど</td>
+				</tr>
+				<tr>
+					<th class="table-noborder">Games</th>
+					<td class="table-noborder">：みんなが遊んでいるゲームの一覧</td>
+				</tr>
+				<tr>
+					<th class="table-noborder">Users</th>
+					<td class="table-noborder">：このサイトを使っているユーザーの一覧</td>
+				</tr>
 			</table>
-		<p class="text-right"><%= link_to "もっと見る", games_path, class:"btn btn-default btn-md" %></p>
-		<p class="text-right"><%= link_to "管理者ログイン", new_admin_session_path %></p>
+
+			<h4>よく遊ばれているゲーム</h4>
+				<table class="table">
+					<td class="table table-noborder", style="width: 5%;"></td>
+					<% @games.each do |game| %>
+						<td class="table table-noborder", style="font-size: 18px; width: 18%;">
+							<%= link_to users_gamer_path(game_id: game.id) do %>
+								<%= game.title %>
+							<% end %>
+						</td>
+					<% end %>
+				</table>
+			<p class="text-right"><%= link_to "もっと見る", games_path, class:"btn btn-default btn-md" %></p>
+			<p class="text-right"><%= link_to "管理者ログイン", new_admin_session_path %></p>
+		<% else %>
+			<h5>管理者側</h5>
+			<p>利用ユーザー数：
+				<%= link_to admin_users_path, local: true do %>
+					<%= @users_count %>人
+				<% end %>
+			</p>
+			<p>　登録ゲーム数：
+				<%= link_to admin_games_path, local: true do %>
+					<%= @games_count %>個
+				<% end %>
+			</p>
+		<% end %>
 	</div>
 </div>
