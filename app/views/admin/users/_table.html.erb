@@ -21,25 +21,15 @@
 				<% end %>
 			</td>
 			<td>
-				<%= link_to user_path(user) do %>
+				<%= link_to admin_user_path(user) do %>
 					<%= user.name %>
 				<% end %>
 			</td>
-			<td>
-				<%= user.introduction %>
-			</td>
-			<td>
-				<%= user.voice %>
-			</td>
-			<td>
-				<%= user.twitter %>
-			</td>
-			<td>
-				<%= user.discord_name %>
-			</td>
-			<td>
-				<%= user.discord_number %>
-			</td>
+			<td><%= user.introduction %></td>
+			<td><%= user.voice %></td>
+			<td><%= user.twitter %></td>
+			<td><%= user.discord_name %></td>
+			<td><%= user.discord_number %></td>
 			<td>
 				<% if user.is_deleted %>
 					BAN
