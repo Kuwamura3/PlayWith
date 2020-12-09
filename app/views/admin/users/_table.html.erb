@@ -1,62 +1,52 @@
 <!--編集途中-->
 <table class="table table-bordered">
-	<tr>
-		<th class="table info", style="width: 5%;">
-		</th>
-		<th class="table info", style="width: 25%;">
-			ユーザー名
-		</th>
-		<th class="table info", style="width: 15%;">
-			ボイスチャット可否
-		</th>
-		<th class="table info", style="width: 40%;">
-			遊んでいるゲーム
-		</th>
-
-		<% if user_signed_in? %>
-			<th class="table info", style="width: 15%;">
-				フォロー／解除
-			</th>
-		<% end %>
-
+	<tr class="info">
+		<th></th>
+		<th>Name</th>
+		<th>Introduction</th>
+		<th>VC</th>
+		<th>Twitter</th>
+		<th>DiscordName</th>
+		<th>DiscordNumber</th>
+		<th>flag</th>
 	</tr>
 
 	<% users.each do |user| %>
 		<tr>
-			<td class="table", style="width: 5%;">
-
+			<td>
 				<% if user.image_id.present? %>
 					<%= attachment_image_tag user, :image, :size => "40x40" %>
 				<% else %>
 					<%= image_tag "noimage.png", :size => "40x40" %>
 				<% end %>
-
 			</td>
-			<td class="table", style="width: 25%;">
+			<td>
 				<%= link_to user_path(user) do %>
 					<%= user.name %>
 				<% end %>
 			</td>
-			<td class="table", style="width: 15%;">
+			<td>
+				<%= user.introduction %>
+			</td>
+			<td>
 				<%= user.voice %>
 			</td>
-			<td class="table", style="width: 40%;">
-				<% if user.playings.present? %>
-					<% user.playings.sample(3).each do |game| %>
-						<span><%= game.title %>　</span>
-					<% end %>
-				<% end %>
-				<% if user.playings.count >= 4 %>
-					<span>etc...</span>
+			<td>
+				<%= user.twitter %>
+			</td>
+			<td>
+				<%= user.discord_name %>
+			</td>
+			<td>
+				<%= user.discord_number %>
+			</td>
+			<td>
+				<% if user.is_deleted %>
+					BAN
+				<% else %>
+					有効
 				<% end %>
 			</td>
-
-			<% if user_signed_in? %>
-				<td id="follow_buttons_<%= user.id %>", class="table", style="width: 15%;">
-					<%= render partial: "public/relationships/button", locals: { user: user } %>
-				</td>
-			<% end %>
-
 		</tr>
 	<% end %>
 </table>
