@@ -1,23 +1,15 @@
 <table class="table table-bordered">
 	<tr class="info">
-		<th class="t5">
-		</th>
-		<th class="t25">
-			ユーザー名
-		</th>
-		<th class="t15">
-			ボイスチャット可否
-		</th>
-		<th class="t40">
-			遊んでいるゲーム
-		</th>
+		<th class="t5"></th>
+		<th class="t25">ユーザー名</th>
+		<th class="t15">ボイスチャット可否</th>
+		<th class="t40">遊んでいるゲーム</th>
 
 		<% if user_signed_in? %>
 			<th class="t15">
 				フォロー／解除
 			</th>
 		<% end %>
-
 	</tr>
 
 	<% users.each do |user| %>
