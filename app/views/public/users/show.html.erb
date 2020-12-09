@@ -37,29 +37,20 @@
 		<div class="row">
 			<table class="table table-bordered">
 				<tr>
-					<th class="table info", style="width: 25%;">ハンドルネーム</th>
-					<td class="table">
-						<%= @user.name %>
-					</td>
+					<th class="info t25">ハンドルネーム</th>
+					<td><%= @user.name %></td>
 				</tr>
-		
 				<tr>
-					<th class="table info", style="width: 25%;">一言</th>
-					<td class="table">
-						<%= @user.introduction %>
-					</td>
+					<th class="info t25">一言</th>
+					<td><%= @user.introduction %></td>
 				</tr>
-		
 				<tr>
-					<th class="table info", style="width: 25%;">ボイスチャット可否</th>
-					<td class="table">
-						<%= @user.voice %>
-					</td>
+					<th class="info t25">ボイスチャット可否</th>
+					<td><%= @user.voice %></td>
 				</tr>
-	
 				<tr>
-					<th class="table info", style="width: 25%;">Twitter</th>
-					<td class="table">
+					<th class="info t25">Twitter</th>
+					<td>
 						<% if !@user.twitter.present? %>
 							未登録
 						<% else %>
@@ -69,8 +60,8 @@
 				</tr>
 	
 				<tr>
-					<th class="table info", style="width: 25%;">Discord</th>
-					<td class="table">
+					<th class="info t25">Discord</th>
+					<td>
 						<% if !@user.discord_name.present? || !@user.discord_number.present? %>
 							未登録
 						<% else %>
@@ -84,12 +75,11 @@
 		<div class="row">
 			<h4>遊びたいゲーム</h4>
 			<% if @users_games.present? %>
-				<table class="table">
+				<table class="table table-noborder">
 					<% @users_games.each_slice(3) do |game1,game2,game3| %>
 						<tr>
-							<td class="table table-noborder", style="width: 10%;">
-							</td>
-							<td class="table table-noborder", style="width: 30%;">
+							<td class="t10"></td>
+							<td class="t30">
 								<% if game1.present? %>
 									<%= link_to users_gamer_path(game_id: game1.id) do %>
 										<%= game1.title %>
@@ -97,7 +87,7 @@
 								<% end %>
 							</td>
 		
-							<td class="table table-noborder", style="width: 30%;">
+							<td class="t30">
 								<% if game2.present? %>
 									<%= link_to users_gamer_path(game_id: game2.id) do %>
 										<%= game2.title %>
@@ -105,7 +95,7 @@
 								<% end %>
 							</td>
 		
-							<td class="table table-noborder", style="width: 30%;">
+							<td class="t30">
 								<% if game3.present? %>
 									<%= link_to users_gamer_path(game_id: game3.id) do %>
 										<%= game3.title %>
