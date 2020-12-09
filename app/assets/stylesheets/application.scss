@@ -72,7 +72,7 @@
 	border-color: #ffb6c1;
 }
 
-.table-noborder {
+.table-noborder > tbody > tr > th, .table-noborder > tbody > tr > td {
 	border-top: 0px !important;
 	border-bottom: 0px !important;
 }
@@ -101,4 +101,8 @@
 
 .t25 {
 	width: 25%;
+}
+
+.t5 {
+	width: 5%;
 }

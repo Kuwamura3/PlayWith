@@ -7,28 +7,28 @@
 		</br>
 
 		<h4>サイトマップ</h4>
-		<table class="table">
+		<table class="table table-noborder">
 			<tr>
-				<th class="table-noborder">About</th>
-				<td class="table-noborder">：このサイトの使い方</td>
+				<th>About</th>
+				<td>：このサイトの使い方</td>
 			</tr>
 			<tr>
-				<th class="table-noborder">Mypage</th>
-				<td class="table-noborder">：自分のプロフィールやフォローフォロワー、通知、コメントなど</td>
+				<th>Mypage</th>
+				<td>：自分のプロフィールやフォローフォロワー、通知、コメントなど</td>
 			</tr>
 			<tr>
-				<th class="table-noborder">Games</th>
-				<td class="table-noborder">：みんなが遊んでいるゲームの一覧</td>
+				<th>Games</th>
+				<td>：みんなが遊んでいるゲームの一覧</td>
 			</tr>
 			<tr>
-				<th class="table-noborder">Users</th>
-				<td class="table-noborder">：このサイトを使っているユーザーの一覧</td>
+				<th>Users</th>
+				<td>：このサイトを使っているユーザーの一覧</td>
 			</tr>
 		</table>
 
 		<h4>よく遊ばれているゲーム</h4>
-			<table class="table">
-				<td class="table table-noborder", style="width: 5%;"></td>
+			<table class="table table-noborder">
+				<td class="t5"></td>
 				<% @games.each do |game| %>
 					<td class="table table-noborder", style="font-size: 18px; width: 18%;">
 						<%= link_to users_gamer_path(game_id: game.id) do %>
