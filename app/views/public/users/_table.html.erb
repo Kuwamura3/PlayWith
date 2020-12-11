@@ -1,28 +1,20 @@
 <table class="table table-bordered">
-	<tr>
-		<th class="table info", style="width: 5%;">
-		</th>
-		<th class="table info", style="width: 25%;">
-			ユーザー名
-		</th>
-		<th class="table info", style="width: 15%;">
-			ボイスチャット可否
-		</th>
-		<th class="table info", style="width: 40%;">
-			遊んでいるゲーム
-		</th>
+	<tr class="info">
+		<th class="t5"></th>
+		<th class="t25">ユーザー名</th>
+		<th class="t15">ボイスチャット可否</th>
+		<th class="t40">遊んでいるゲーム</th>
 
 		<% if user_signed_in? %>
-			<th class="table info", style="width: 15%;">
+			<th class="t15">
 				フォロー／解除
 			</th>
 		<% end %>
-
 	</tr>
 
 	<% users.each do |user| %>
 		<tr>
-			<td class="table", style="width: 5%;">
+			<td class="t5">
 
 				<% if user.image_id.present? %>
 					<%= attachment_image_tag user, :image, :size => "40x40" %>
@@ -31,15 +23,15 @@
 				<% end %>
 
 			</td>
-			<td class="table", style="width: 25%;">
+			<td class="t25">
 				<%= link_to user_path(user) do %>
 					<%= user.name %>
 				<% end %>
 			</td>
-			<td class="table", style="width: 15%;">
+			<td class="t15">
 				<%= user.voice %>
 			</td>
-			<td class="table", style="width: 40%;">
+			<td class="t40">
 				<% if user.playings.present? %>
 					<% user.playings.sample(3).each do |game| %>
 						<span><%= game.title %>　</span>
@@ -51,7 +43,7 @@
 			</td>
 
 			<% if user_signed_in? %>
-				<td id="follow_buttons_<%= user.id %>", class="table", style="width: 15%;">
+				<td id="follow_buttons_<%= user.id %>", class="t15">
 					<%= render partial: "public/relationships/button", locals: { user: user } %>
 				</td>
 			<% end %>
