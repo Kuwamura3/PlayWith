@@ -1,29 +1,29 @@
-<table class="table">
+<table class="table table-noborder">
 	<% users_games.each_slice(3) do |game1,game2,game3| %>
 		<tr>
 			<% if game1.present? %>
-				<td class="table table-noborder", style="width: 1%;">
+				<td class="t1">
 					<%= link_to "", users_game_path(game1), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
 				</td>
-				<td class="table table-noborder", style="width: 32%;">
+				<td class="t32">
 					<%= game1.title %>
 				</td>
 			<% end %>
 
 			<% if game2.present? %>
-				<td class="table table-noborder", style="width: 1%;">
+				<td class="t1">
 					<%= link_to "", users_game_path(game2), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
 				</td>
-				<td class="table table-noborder", style="width: 32%;">
+				<td class="t32">
 					<%= game2.title %>
 				</td>
 			<% end %>
 
 			<% if game3.present? %>
-				<td class="table table-noborder", style="width: 1%;">
+				<td class="t1">
 					<%= link_to "", users_game_path(game3), method: :delete, class: "glyphicon glyphicon-remove-sign" %>
 				</td>
-				<td class="table table-noborder", style="width: 32%;">
+				<td class="t32">
 					<%= game3.title %>
 				</td>
 			<% end %>

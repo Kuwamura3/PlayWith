@@ -1,6 +1,6 @@
 <table class="table table-bordered col-md-12">
 	<tr>
-		<th class="table info">
+		<th class="info">
 			<span>通知欄</span>
 			<% if notifications.present? %>
 				<%= link_to "全通知を削除", notifications_path, method: :delete,  class: "btn btn-xs btn-danger pull-right", remote: true %>
@@ -10,7 +10,7 @@
 	<% if notifications.present? %>
 		<% notifications.each do |notification| %>
 			<tr>
-				<td class="table">
+				<td>
 					<div class="col-md-1", style="padding: 0;">
 						<% if notification.sender.image_id.present? %>
 							<%= attachment_image_tag notification.sender, :image, :size => "30x30" %>
@@ -50,7 +50,7 @@
 			</tr>
 		<% end %>
 	<% else %>
-		<td class="table">
+		<td>
 			<p>通知はありません</p>
 		</td>
 	<% end %>

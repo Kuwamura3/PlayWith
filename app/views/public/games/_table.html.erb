@@ -1,14 +1,14 @@
 <table class="table table-bordered">
-	<tr>
-		<th class="table info", style="width: 50%;">
+	<tr class="info">
+		<th class="t50">
 			ゲームタイトル
 		</th>
-		<th class="table info", style="width: 25%;">
+		<th class="t25">
 			遊んでいるユーザー人数
 		</th>
 
 		<% if user_signed_in? %>
-			<th class="table info", style="width: 25%;">
+			<th class="t25">
 				プロフィールに登録・解除
 			</th>
 		<% end %>
@@ -17,17 +17,17 @@
 
 	<% games.each do |game| %>
 		<tr>
-			<td class="table", style="width: 50%;">
+			<td class="t50">
 				<%= link_to users_gamer_path(game_id: game.id) do %>
 					<%= game.title %>
 				<% end %>
 			</td>
-			<td id="games_counts_<%= game.id %>", class="table", style="width: 25%;">
+			<td id="games_counts_<%= game.id %>", class="t25">
 				<%= render partial: "public/users_games/count", locals: { game: game } %>
 			</td>
 
 			<% if user_signed_in? %>
-				<td id="games_buttons_<%= game.id %>", class="table", style="width: 25%;">
+				<td id="games_buttons_<%= game.id %>", class="t25">
 					<%= render partial: "public/users_games/button", locals: { users_games: @users_games, game: game } %>
 				</td>
 			<% end %>
