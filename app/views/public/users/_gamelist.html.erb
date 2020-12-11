@@ -1,0 +1,30 @@
+<table class="table table-noborder">
+	<% users_games.each_slice(3) do |game1,game2,game3| %>
+		<tr>
+			<td class="t10"></td>
+			<% if game1.present? %>
+				<td class="t30">
+					<%= link_to users_gamer_path(game_id: game1.id) do %>
+						<%= game1.title %>
+					<% end %>
+				</td>
+			<% end %>
+
+			<% if game2.present? %>
+				<td class="t30">
+					<%= link_to users_gamer_path(game_id: game2.id) do %>
+						<%= game2.title %>
+					<% end %>
+				</td>
+			<% end %>
+
+			<% if game3.present? %>
+				<td class="t30">
+					<%= link_to users_gamer_path(game_id: game3.id) do %>
+						<%= game3.title %>
+					<% end %>
+				</td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

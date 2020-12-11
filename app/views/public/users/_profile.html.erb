@@ -1,0 +1,40 @@
+<div class="row">
+	<table class="table table-bordered">
+		<tr>
+			<th class="info t25">ハンドルネーム</th>
+			<td><%= user.name %></td>
+		</tr>
+
+		<tr>
+			<th class="info t25">一言</th>
+			<td><%= user.introduction %></td>
+		</tr>
+
+		<tr>
+			<th class="info t25">ボイスチャット可否</th>
+			<td><%= user.voice %></td>
+		</tr>
+
+		<tr>
+			<th class="info t25">Twitter</th>
+			<td>
+				<% if !user.twitter.present? %>
+					未登録
+				<% else %>
+					<%= user.twitter %>
+				<% end %>
+			</td>
+		</tr>
+
+		<tr>
+			<th class="info t25">Discord</th>
+			<td>
+				<% if !user.discord_name.present? || !user.discord_number.present? %>
+					未登録
+				<% else %>
+					<%= user.discord_name %>#<%= user.discord_number %>
+				<% end %>
+			</td>
+		</tr>
+	</table>
+</div>

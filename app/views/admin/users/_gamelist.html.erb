@@ -1,0 +1,18 @@
+<table class="table table-noborder">
+	<% users_games.each_slice(3) do |game1,game2,game3| %>
+		<tr>
+			<td class="t10"></td>
+			<% if game1.present? %>
+				<td class="t30"><%= game1.title %></td>
+			<% end %>
+
+			<% if game2.present? %>
+				<td class="t30"><%= game2.title %></td>
+			<% end %>
+
+			<% if game3.present? %>
+				<td class="t30"><%= game3.title %></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
