@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :relationships, only: [:index]
+  end
+
 	namespace :admin do
 		resources :games, only: [:index, :create, :new]
 	end
