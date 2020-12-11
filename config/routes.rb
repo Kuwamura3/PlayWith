@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :relationships, only: [:index]
+  end
+
+	namespace :admin do
+		resources :games, only: [:index, :create, :new]
+	end
+
+	namespace :admin do
+		resources :users, only: [:index, :edit, :show, :update]
+	end
+
+	devise_for :admins, controllers: {
+		sessions:      'users/sessions',
+		passwords:     'users/passwords',
+	}
+
 	devise_for :users, controllers: {
 		sessions:      'users/sessions',
 		passwords:     'users/passwords',

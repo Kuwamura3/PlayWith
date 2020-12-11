@@ -1,0 +1,37 @@
+<%= render "users/shared/error_messages", resource: resource %>
+<div class="row">
+	<h3>管理者ログイン</h3>
+
+	<div class="col-md-offset-3 col-md-6 form-group">
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+			<table class="table">
+				<tr>
+					<th class="table table-noborder", style="width: 30%;">
+						<%= f.label :name %>
+					</th>
+					<td class="table table-noborder">
+						<%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+					</td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 30%;">
+						<%= f.label :password %>
+					</th>
+					<td class="table table-noborder">
+						<%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+					</td>
+				</tr>
+				<tr>
+					<th class="table table-noborder", style="width: 30%;"></th>
+					<td class="table table-noborder">
+						<%= f.submit "ログイン", class: "btn btn-md btn-primary", style: "width: 130px; margin-right: 20px;" %>
+						<% if devise_mapping.rememberable? %>
+							<%= f.check_box :remember_me %>
+							<%= f.label :remember_me %>
+						<% end %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+	</div>
+</div>

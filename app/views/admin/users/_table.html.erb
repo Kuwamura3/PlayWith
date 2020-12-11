@@ -1,0 +1,46 @@
+<!--編集途中-->
+<table class="table table-bordered">
+	<tr class="info">
+		<th></th>
+		<th>Name</th>
+		<th>Introduction</th>
+		<th>VC</th>
+		<th>Twitter</th>
+		<th>DiscordName</th>
+		<th>DiscordNumber</th>
+		<th>flag</th>
+	</tr>
+
+	<% users.each do |user| %>
+		<tr>
+			<td>
+				<% if user.image_id.present? %>
+					<%= attachment_image_tag user, :image, :size => "40x40" %>
+				<% else %>
+					<%= image_tag "noimage.png", :size => "40x40" %>
+				<% end %>
+			</td>
+			<td>
+				<%= link_to admin_user_path(user) do %>
+					<%= user.name %>
+				<% end %>
+			</td>
+			<td><%= user.introduction %></td>
+			<td><%= user.voice %></td>
+			<td><%= user.twitter %></td>
+			<td><%= user.discord_name %></td>
+			<td><%= user.discord_number %></td>
+			<td>
+				<% if user.is_deleted %>
+					BAN
+				<% else %>
+					有効
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+<div class="col-md-4">
+	<%= paginate users %>
+</div>
