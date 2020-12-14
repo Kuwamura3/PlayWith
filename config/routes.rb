@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resources :relationships, only: [:index]
+    resources :relationships, only: [:show]
   end
 
 	namespace :admin do
