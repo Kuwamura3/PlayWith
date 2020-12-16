@@ -38,6 +38,7 @@ class User < ApplicationRecord
 		false
 	end
 
+	# フォロー関連
 	def follow(other_user)
 		unless self == other_user
 			self.relationships.find_or_create_by(follow_id: other_user.id)
@@ -51,6 +52,11 @@ class User < ApplicationRecord
 
 	def following?(other_user)
 		self.followings.include?(other_user)
+	end
+
+	# BANチェック
+	def active_for_authentication?
+		super && (self.is_deleted == false)
 	end
 
 end

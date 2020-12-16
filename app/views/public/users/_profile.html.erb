@@ -36,5 +36,18 @@
 				<% end %>
 			</td>
 		</tr>
+
+		<% if admin_signed_in? %>
+			<tr>
+				<th class="info t25">ユーザー資格</th>
+				<td>
+					<% if user.is_deleted %>
+						BAN
+					<% else %>
+						有効
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
 	</table>
 </div>

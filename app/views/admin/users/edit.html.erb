@@ -51,6 +51,24 @@
 					<td><%= f.text_field :discord_name, class: "form-control" %> # <%= f.text_field :discord_number, class: "form-control" %></td>
 				</tr>
 				<tr>
+					<th class="t25">ユーザー資格</th>
+					<td>
+						<% if @user.is_deleted == false %>
+							<%= f.radio_button :is_deleted, :false, checked: true %>
+						<% else %>
+							<%= f.radio_button :is_deleted, :false %>
+						<% end %>
+						<%= f.label :"有効　　" %>
+						
+						<% if @user.is_deleted == true %>
+							<%= f.radio_button :is_deleted, :true, checked: true %>
+						<% else %>
+							<%= f.radio_button :is_deleted, :true %>
+						<% end %>
+						<%= f.label :"BAN" %>
+					</td>
+				</tr>
+				<tr>
 					<th class="t25">
 						<%= f.submit "更新する", class:"btn btn-info btn-md" %>
 					</th>

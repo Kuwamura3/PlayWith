@@ -60,7 +60,7 @@ class Public::UsersController < ApplicationController
 	private
 	
 	def user_params
-		params.require(:user).permit(:image, :name, :introduction, :voice, :twitter, :discord_name, :discord_number)
+		params.require(:user).permit(:image, :name, :introduction, :voice, :twitter, :discord_name, :discord_number, :is_deleted)
 	end
 
 end

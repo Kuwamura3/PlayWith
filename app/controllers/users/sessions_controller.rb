@@ -17,8 +17,22 @@ class Users::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  
+  before_action :reject_user, only: [:create]
 
-  # protected
+  protected
+  
+  def reject_user
+    @user = User.find_by(name: params[:user][:name])
+    if @user
+      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == true))
+        flash[:alert] = "BANされたユーザーです"
+        redirect_to new_user_session_path
+      end
+    else
+      flash[:alert] = "必須項目を入力して下さい"
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
