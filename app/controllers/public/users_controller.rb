@@ -6,11 +6,11 @@ class Public::UsersController < ApplicationController
 
 	def gamer
 		@game = Game.find_by(id: params[:game_id])
-		@users = @game.players.page(params[:page]).per(PER)
+		@users = @game.players.where(is_deleted: false).page(params[:page]).per(PER)
 	end
 
 	def index
-		@users = User.page(params[:page]).per(PER)
+		@users = User.where(is_deleted: false).page(params[:page]).per(PER)
 	end
 
 	def edit
