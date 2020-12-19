@@ -55,7 +55,7 @@ class Admin::GamesController < ApplicationController
 			flash[:notice] = "「#{@game.title}」を「#{@game_remain.title}」に統合しました"
 			redirect_to admin_games_path
 		else
-			flash.now[:alert] = "異なる２種のゲームを選択してください。"
+			flash.now[:alert] = "異なる２種のゲームを選択してください"
 			@games = Game.page(params[:page]).per(PER)
 			render :index
 		end
