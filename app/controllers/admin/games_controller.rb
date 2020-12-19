@@ -39,6 +39,17 @@ class Admin::GamesController < ApplicationController
 				end
 			end
 
+			@users = User.all
+			@users.each do |user|
+				@notification = Notification.new
+				@notification.user_id = user.id
+				@notification.sender_id = user.id
+				@notification.kind = "統合"
+				@notification.game_id = @game_remain.id
+				@notification.game_deleted = @game.title
+				@notification.save
+			end
+
 			@game.destroy
 
 			flash[:notice] = "「#{@game.title}」を「#{@game_remain.title}」に統合しました"

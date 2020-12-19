@@ -4,6 +4,6 @@ class Notification < ApplicationRecord
 	belongs_to :sender, class_name: "User"
 	belongs_to :game
 
-	enum kind: { フォロー: 0, 新規投稿: 1, 希望投稿: 2}
+	enum kind: { フォロー: 0, 新規投稿: 1, 希望投稿: 2, 統合: 3 }
 
 end
