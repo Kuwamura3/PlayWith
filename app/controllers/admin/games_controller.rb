@@ -1,52 +1,59 @@
 class Admin::GamesController < ApplicationController
 	before_action :authenticate_admin!, only: [:index, :new]
 
-  def index
-    @games = Game.page(params[:page]).per(PER)
-  end
+	def index
+		@games = Game.page(params[:page]).per(PER)
+	end
 
-  def create
-    @game = Game.new(game_params)
-    unless Game.find_by(title: @game.title)
-      if @game.save
-        flash[:notice] = "ゲームを新規登録しました"
-        redirect_to admin_games_path
-      else
-        render :new
-      end
-    else
-      flash.now[:alert] = "そのゲームは登録済です"
-      render :new
-    end
-  end
+	def create
+		@game = Game.new(game_params)
+		unless Game.find_by(title: @game.title)
+			if @game.save
+				flash[:notice] = "ゲームを新規登録しました"
+				redirect_to admin_games_path
+			else
+				render :new
+			end
+		else
+			flash.now[:alert] = "そのゲームは登録済です"
+			render :new
+		end
+	end
 
-  def new
-  end
+	def new
+	end
 
-  def edit
-    @games = Game.all
-  end
+	def edit
+		@games = Game.all
+	end
 
-  def integration
-    unless params[:game_id] == params[:game_id_remain]
-      @game_remain = Game.find(params[:game_id_remain])
-      @game = Game.find(params[:game_id])
+	def integration
+		unless params[:game_id] == params[:game_id_remain]
+			@game_remain = Game.find(params[:game_id_remain])
+			@game = Game.find(params[:game_id])
 
-      # 統合するためのアクションが入る部分
+			@game.players.each do |user|
+				@users_game = user.users_games.find_or_initialize_by(game_id: params[:game_id_remain])
+				if @users_game.new_record?
+					@users_game.save
+				end
+			end
 
-      flash[:notice] = "「#{@game.title}」を「#{@game_remain.title}」に統合しました"
-      redirect_to admin_games_path
-    else
-      flash.now[:alert] = "異なる２種のゲームを選択してください。"
-      @games = Game.page(params[:page]).per(PER)
-      render :index
-    end
-  end
-  
-  private
+			@game.destroy
 
-  def game_params
-    params.permit(:title)
-  end
+			flash[:notice] = "「#{@game.title}」を「#{@game_remain.title}」に統合しました"
+			redirect_to admin_games_path
+		else
+			flash.now[:alert] = "異なる２種のゲームを選択してください。"
+			@games = Game.page(params[:page]).per(PER)
+			render :index
+		end
+	end
+	
+	private
+
+	def game_params
+		params.permit(:title)
+	end
 
 end
