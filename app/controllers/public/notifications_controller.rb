@@ -45,7 +45,7 @@ class Public::NotificationsController < ApplicationController
 	private
 
 	def notification_params
-		params.permit(:sender_id, :game_id, :kind)
+		params.permit(:sender_id, :game_id, :game_id_remain, :kind)
 	end
 
 end

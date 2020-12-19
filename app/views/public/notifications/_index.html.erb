@@ -22,24 +22,27 @@
 					<div class="col-md-11">
 						<% if notification.kind == "フォロー" %>
 
-							<p><%= @users.find(notification.sender_id).name %>さんにフォローされました</p>
+							<p><%= @users.find(notification.sender_id).name %> さんにフォローされました</p>
 
 						<% elsif notification.kind == "新規投稿" %>
 
-							<% if notification.sender_id == @user.id%>
-								<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %>を新しく始めました」</p>
+							<% if notification.sender_id == @user.id %>
+								<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %> を新しく始めました」</p>
 							<% else %>
-								<p><%= notification.sender.name %>が<%= notification.game.title %>を新しく始めました</p>
+								<p><%= notification.sender.name %> が <%= notification.game.title %> を新しく始めました</p>
 							<% end %>
 
-							<% elsif notification.kind == "希望投稿" %>
+						<% elsif notification.kind == "希望投稿" %>
 
-							<% if notification.sender_id == @user.id%>
-								<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %>で遊びたがっています」</p>
+							<% if notification.sender_id == @user.id %>
+								<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %> で遊びたがっています」</p>
 							<% else %>
-								<p><%= notification.sender.name %>が<%= notification.game.title %>を遊びたがっています</p>
+								<p><%= notification.sender.name %> が <%= notification.game.title %> を遊びたがっています</p>
 							<% end %>
 
+						<% elsif notification.kind == "統合" %>
+							<p>※管理者からの投稿</p>
+							<p><%= notification.game_deleted %> が <%= notification.game.title %> に統合されました</p>
 						<% end %>
 					</div>
 					<div>

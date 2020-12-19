@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resources :relationships, only: [:index]
+    resources :relationships, only: [:show]
   end
 
 	namespace :admin do
+		delete 'games' => 'games#integration'
 		resources :games, only: [:index, :create, :new]
+		resource :games, only: [:edit]
 	end
 
 	namespace :admin do
