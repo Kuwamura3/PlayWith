@@ -28,7 +28,15 @@ class Admin::GamesController < ApplicationController
   end
 
   def integration
-    if params[:game_id] == params[:game_id_remain]
+    unless params[:game_id] == params[:game_id_remain]
+      @game_remain = Game.find(params[:game_id_remain])
+      @game = Game.find(params[:game_id])
+
+      # 統合するためのアクションが入る部分
+
+      flash[:notice] = "「#{@game.title}」を「#{@game_remain.title}」に統合しました"
+      redirect_to admin_games_path
+    else
       flash.now[:alert] = "異なる２種のゲームを選択してください。"
       @games = Game.page(params[:page]).per(PER)
       render :index
