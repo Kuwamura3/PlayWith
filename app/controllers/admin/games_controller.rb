@@ -10,7 +10,7 @@ class Admin::GamesController < ApplicationController
     unless Game.find_by(title: @game.title)
       if @game.save
         flash[:notice] = "ゲームを新規登録しました"
-        redirect_to games_path
+        redirect_to admin_games_path
       else
         render :new
       end
@@ -21,6 +21,12 @@ class Admin::GamesController < ApplicationController
   end
 
   def new
+  end
+
+  def edit
+  end
+
+  def update
   end
   
   private

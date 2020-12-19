@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   end
 
 	namespace :admin do
-		resources :games, only: [:index, :create, :new]
+		resources :games, only: [:index, :create, :new, :update]
+		resource :games, only: [:edit]
 	end
 
 	namespace :admin do
