@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   end
 
 	namespace :admin do
-		resources :games, only: [:index, :create, :new, :update]
+		delete 'games' => 'games#integration'
+		resources :games, only: [:index, :create, :new]
 		resource :games, only: [:edit]
 	end
 

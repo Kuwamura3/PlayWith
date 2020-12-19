@@ -24,9 +24,15 @@ class Admin::GamesController < ApplicationController
   end
 
   def edit
+    @games = Game.all
   end
 
-  def update
+  def integration
+    if params[:game_id] == params[:game_id_remain]
+      flash.now[:alert] = "異なる２種のゲームを選択してください。"
+      @games = Game.page(params[:page]).per(PER)
+      render :index
+    end
   end
   
   private
