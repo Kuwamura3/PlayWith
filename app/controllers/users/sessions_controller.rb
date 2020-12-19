@@ -23,14 +23,16 @@ class Users::SessionsController < Devise::SessionsController
   protected
   
   def reject_user
-    @user = User.find_by(name: params[:user][:name])
-    if @user
-      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == true))
-        flash[:alert] = "BANされたユーザーです"
-        redirect_to new_user_session_path
+    if params[:user]
+      @user = User.find_by(name: params[:user][:name])
+      if @user
+        if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
+          flash[:alert] = "BANされたユーザーです"
+          redirect_to new_user_session_path
+        end
+      else
+        flash[:alert] = "必須項目を入力して下さい"
       end
-    else
-      flash[:alert] = "必須項目を入力して下さい"
     end
   end
 
