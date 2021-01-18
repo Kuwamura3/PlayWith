@@ -1,6 +1,6 @@
 <table class="table table-bordered col-md-12">
 	<tr>
-		<th class="table info">
+		<th class="info">
 			<span>通知欄</span>
 			<% if notifications.present? %>
 				<%= link_to "全通知を削除", notifications_path, method: :delete,  class: "btn btn-xs btn-danger pull-right", remote: true %>
@@ -10,7 +10,7 @@
 	<% if notifications.present? %>
 		<% notifications.each do |notification| %>
 			<tr>
-				<td class="table">
+				<td>
 					<div class="col-md-1", style="padding: 0;">
 						<% if notification.sender.image_id.present? %>
 							<%= attachment_image_tag notification.sender, :image, :size => "30x30" %>
@@ -22,24 +22,27 @@
 					<div class="col-md-11">
 						<% if notification.kind == "フォロー" %>
 
-							<p><%= @users.find(notification.sender_id).name %>さんにフォローされました</p>
+							<p><%= @users.find(notification.sender_id).name %> さんにフォローされました</p>
 
 						<% elsif notification.kind == "新規投稿" %>
 
-							<% if notification.sender_id == @user.id%>
-								<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %>を新しく始めました」</p>
+							<% if notification.sender_id == @user.id %>
+								<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %> を新しく始めました」</p>
 							<% else %>
-								<p><%= notification.sender.name %>が<%= notification.game.title %>を新しく始めました</p>
+								<p><%= notification.sender.name %> が <%= notification.game.title %> を新しく始めました</p>
 							<% end %>
 
-							<% elsif notification.kind == "希望投稿" %>
+						<% elsif notification.kind == "希望投稿" %>
 
-							<% if notification.sender_id == @user.id%>
-								<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %>で遊びたがっています」</p>
+							<% if notification.sender_id == @user.id %>
+								<p>フォロワーに向けて以下の投稿をしました「<%= notification.game.title %> で遊びたがっています」</p>
 							<% else %>
-								<p><%= notification.sender.name %>が<%= notification.game.title %>を遊びたがっています</p>
+								<p><%= notification.sender.name %> が <%= notification.game.title %> を遊びたがっています</p>
 							<% end %>
 
+						<% elsif notification.kind == "統合" %>
+							<p>※管理者からの投稿</p>
+							<p><%= notification.game_deleted %> が <%= notification.game.title %> に統合されました</p>
 						<% end %>
 					</div>
 					<div>
@@ -50,7 +53,7 @@
 			</tr>
 		<% end %>
 	<% else %>
-		<td class="table">
+		<td>
 			<p>通知はありません</p>
 		</td>
 	<% end %>

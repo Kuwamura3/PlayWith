@@ -72,7 +72,7 @@
 	border-color: #ffb6c1;
 }
 
-.table-noborder {
+.table-noborder > tbody > tr > th, .table-noborder > tbody > tr > td {
 	border-top: 0px !important;
 	border-bottom: 0px !important;
 }
@@ -91,4 +91,54 @@
 
 .comment {
 	margin-right: 30px;
+}
+
+// ↓テーブルの幅関連
+
+.t60 {
+	width: 60%;
+}
+
+.t50 {
+	width: 50%;
+}
+
+.t40 {
+	width: 40%;
+}
+
+.t32 {
+	width: 32%;
+}
+
+.t30 {
+	width: 30%;
+}
+
+.t25 {
+	width: 25%;
+}
+
+.t20 {
+	width: 20%;
+}
+.t18 {
+	font-size: 18px;
+	width: 18%;
+}
+
+.t15 {
+	width: 15%;
+}
+
+.t10 {
+	width: 10%;
+}
+
+.t5 {
+	width: 5%;
+}
+
+.t1 {
+	width: 1%;
 }

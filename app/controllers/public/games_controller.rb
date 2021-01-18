@@ -4,6 +4,8 @@ class Public::GamesController < ApplicationController
   def top
     @games = Game.joins(:users_games).group(:id).order("count(users_games.user_id)DESC").limit(5)
     #遊んでいる人数が多いゲームTOP5を選出
+    @users_count = User.all.count
+    @games_count = Game.all.count
   end
 
   def about
@@ -19,7 +21,7 @@ class Public::GamesController < ApplicationController
         @contents = Game.where("title LIKE ?", "%#{params[:search_content]}%").page(params[:page]).per(PER)
         # render :search
       elsif params[:search_model] == "2" #検索欄でUsersを選択
-        @contents = User.where("name LIKE ?", "%#{params[:search_content]}%").page(params[:page]).per(PER)
+        @contents = User.where(is_deleted: false).where("name LIKE ?", "%#{params[:search_content]}%").page(params[:page]).per(PER)
         render template: "public/users/search"
       end
     end

@@ -1,0 +1,8 @@
+<div class="row">
+	<h3>ユーザー一覧</h3>
+	<% if @users.present? %>
+		<%= render partial: "admin/users/table", locals: { users: @users } %>
+	<% else %>
+		<h4>　ユーザーはいません。</h4>
+	<% end %>
+</div>

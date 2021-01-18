@@ -1,0 +1,98 @@
+<%= render "users/shared/error_messages", resource: @user %>
+<div class="row">
+	<h3>プロフィール編集</h3>
+
+	<div class="col-md-8">
+		<%= form_with model:@user, class: "form-inline", local:true do |f| %>
+			<table class="table table-noborder">
+				<tr>
+					<th class="t25">プロフィール画像</th>
+					<td><%= f.attachment_field :image %></td>
+				</tr>
+				<tr>
+					<th class="t25">ハンドルネーム</th>
+					<td><%= f.text_field :name, class: "form-control" %></td>
+				</tr>
+				<tr>
+					<th class="t25">一言</th>
+					<td><%= f.text_area :introduction, class: "form-control", :size => "50"  %></td>
+				</tr>
+				<tr>
+					<th class="t25">ボイスチャット可否</th>
+					<td>
+						<% if @user.voice == "未登録" %>
+							<%= f.radio_button :voice, :"未登録", checked: true %>
+						<% else %>
+							<%= f.radio_button :voice, :"未登録" %>
+						<% end %>
+						<%= f.label :"未登録　　" %>
+						
+						<% if @user.voice == "ＯＫ" %>
+							<%= f.radio_button :voice, :"ＯＫ", checked: true %>
+						<% else %>
+							<%= f.radio_button :voice, :"ＯＫ" %>
+						<% end %>
+						<%= f.label :"ＯＫ　　" %>
+						
+						<% if @user.voice == "ＮＧ" %>
+							<%= f.radio_button :voice, :"ＮＧ", checked: true %>
+						<% else %>
+							<%= f.radio_button :voice, :"ＮＧ" %>
+						<% end %>
+						<%= f.label :"ＮＧ" %>
+					</td>
+				</tr>
+				<tr>
+					<th class="t25">Twitter</th>
+					<td><%= f.text_field :twitter, class: "form-control" %></td>
+				</tr>
+				<tr>
+					<th class="t25">Discord</th>
+					<td><%= f.text_field :discord_name, class: "form-control" %> # <%= f.text_field :discord_number, class: "form-control" %></td>
+				</tr>
+				<tr>
+					<th class="t25">ユーザー資格</th>
+					<td>
+						<% if @user.is_deleted == false %>
+							<%= f.radio_button :is_deleted, :false, checked: true %>
+						<% else %>
+							<%= f.radio_button :is_deleted, :false %>
+						<% end %>
+						<%= f.label :"有効　　" %>
+						
+						<% if @user.is_deleted == true %>
+							<%= f.radio_button :is_deleted, :true, checked: true %>
+						<% else %>
+							<%= f.radio_button :is_deleted, :true %>
+						<% end %>
+						<%= f.label :"BAN" %>
+					</td>
+				</tr>
+				<tr>
+					<th class="t25">
+						<%= f.submit "更新する", class:"btn btn-info btn-md" %>
+					</th>
+				</tr>
+			</table>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<h3>登録ゲーム編集</h3>
+	<div id="users_games_list", class="col-md-8">
+		<%= render partial: "public/users_games/list", locals: { users_games: @users_games} %>
+
+		<%= form_with(url: users_games_path, method: :post, class: "form-inline", local: true) do |f| %>
+			<%= f.hidden_field :user_id, value: @user.id %>
+			<%= f.collection_select(:game_id, @games, :id, :title, { prompt: "ゲーム選択"}, { class: "form-control" }) %>
+			<%= f.submit "追加する", class: "btn btn-md btn-info" %>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-offset-10 col-md-2">
+		<%= link_to "プロフィールに戻る", admin_user_path(@user), class:"btn btn-default btn-md" %>
+	</div>
+</div>

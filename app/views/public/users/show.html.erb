@@ -34,87 +34,12 @@
 			<% end %>
 		</div>
 
-		<div class="row">
-			<table class="table table-bordered">
-				<tr>
-					<th class="table info", style="width: 25%;">ハンドルネーム</th>
-					<td class="table">
-						<%= @user.name %>
-					</td>
-				</tr>
-		
-				<tr>
-					<th class="table info", style="width: 25%;">一言</th>
-					<td class="table">
-						<%= @user.introduction %>
-					</td>
-				</tr>
-		
-				<tr>
-					<th class="table info", style="width: 25%;">ボイスチャット可否</th>
-					<td class="table">
-						<%= @user.voice %>
-					</td>
-				</tr>
-	
-				<tr>
-					<th class="table info", style="width: 25%;">Twitter</th>
-					<td class="table">
-						<% if !@user.twitter.present? %>
-							未登録
-						<% else %>
-							<%= @user.twitter %>
-						<% end %>
-					</td>
-				</tr>
-	
-				<tr>
-					<th class="table info", style="width: 25%;">Discord</th>
-					<td class="table">
-						<% if !@user.discord_name.present? || !@user.discord_number.present? %>
-							未登録
-						<% else %>
-							<%= @user.discord_name %>#<%= @user.discord_number %>
-						<% end %>
-					</td>
-				</tr>
-			</table>
-		</div>
+		<%= render "public/users/profile", user: @user %>
 
 		<div class="row">
 			<h4>遊びたいゲーム</h4>
 			<% if @users_games.present? %>
-				<table class="table">
-					<% @users_games.each_slice(3) do |game1,game2,game3| %>
-						<tr>
-							<td class="table table-noborder", style="width: 10%;">
-							</td>
-							<td class="table table-noborder", style="width: 30%;">
-								<% if game1.present? %>
-									<%= link_to users_gamer_path(game_id: game1.id) do %>
-										<%= game1.title %>
-									<% end %>
-								<% end %>
-							</td>
-		
-							<td class="table table-noborder", style="width: 30%;">
-								<% if game2.present? %>
-									<%= link_to users_gamer_path(game_id: game2.id) do %>
-										<%= game2.title %>
-									<% end %>
-								<% end %>
-							</td>
-		
-							<td class="table table-noborder", style="width: 30%;">
-								<% if game3.present? %>
-									<%= link_to users_gamer_path(game_id: game3.id) do %>
-										<%= game3.title %>
-									<% end %>
-								<% end %>
-							</td>
-						</tr>
-					<% end %>
-				</table>
+				<%= render "public/users/gamelist", users_games: @users_games %>
 			<% else %>
 				<div class="col-md-12">
 					<p>

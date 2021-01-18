@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :relationships, only: [:show]
+  end
+
+	namespace :admin do
+		delete 'games' => 'games#integration'
+		resources :games, only: [:index, :create, :new]
+		resource :games, only: [:edit]
+	end
+
+	namespace :admin do
+		resources :users, only: [:index, :edit, :show, :update]
+	end
+
+	devise_for :admins, controllers: {
+		sessions:      'users/sessions',
+		passwords:     'users/passwords',
+	}
+
 	devise_for :users, controllers: {
 		sessions:      'users/sessions',
 		passwords:     'users/passwords',

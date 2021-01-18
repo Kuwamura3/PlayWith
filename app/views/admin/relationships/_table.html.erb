@@ -1,0 +1,24 @@
+<table class="table table-bordered">
+	<tr class="info">
+		<th class="t10"></th>
+		<th class="t60">ユーザー名</th>
+
+	</tr>
+
+	<% users.each do |user| %>
+		<tr>
+			<td class="t10">
+				<% if user.image_id.present? %>
+					<%= attachment_image_tag user, :image, :size => "40x40" %>
+				<% else %>
+					<%= image_tag "noimage.png", :size => "40x40" %>
+				<% end %>
+			</td>
+			<td class="t60">
+				<%= link_to admin_user_path(user) do %>
+					<%= user.name %>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>
