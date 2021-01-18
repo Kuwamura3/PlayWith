@@ -38,7 +38,11 @@
 					<% end %>
 				</table>
 			<p class="text-right"><%= link_to "もっと見る", games_path, class:"btn btn-default btn-md" %></p>
-			</br><p class="text-right"><%= link_to "管理者ログイン", new_admin_session_path %></p>
+
+			<% unless user_signed_in? %>
+				</br><p class="text-right"><%= link_to "管理者ログイン", new_admin_session_path %></p>
+			<% end %>
+
 		<% else %>
 			<h5>管理者側</h5>
 			<p>利用ユーザー数：
